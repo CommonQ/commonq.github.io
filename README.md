@@ -1,4 +1,4 @@
-commonq.github.com
+commonq.github.io
 ==================
 
 blog
