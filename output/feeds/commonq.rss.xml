@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CommonQ's Blog</title><link>http://commonq.github.io/</link><description></description><atom:link href="http://commonq.github.io/feeds/commonq.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 22 Apr 2014 00:00:00 +0800</lastBuildDate><item><title>My First Blog</title><link>http://commonq.github.io/test.html</link><description>&lt;h1&gt;这里是正文&lt;/h1&gt;
-&lt;p&gt;我的第一篇博客
-This is the content of my super blog post.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">CommonQ</dc:creator><pubDate>Tue, 22 Apr 2014 00:00:00 +0800</pubDate><guid>tag:commonq.github.io,2014-04-22:test.html</guid><category>pelican</category><category>publishing</category></item></channel></rss>

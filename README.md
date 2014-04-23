@@ -1,4 +1,0 @@
-commonq.github.io
-==================
-
-blog
