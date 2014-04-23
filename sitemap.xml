@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://commonq.github.io/index.html</loc>
-<lastmod>2014-04-23T19:11:45-00:00</lastmod>
+<lastmod>2014-04-23T19:44:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://commonq.github.io/archives.html</loc>
-<lastmod>2014-04-23T19:11:45-00:00</lastmod>
+<lastmod>2014-04-23T19:44:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://commonq.github.io/tags.html</loc>
-<lastmod>2014-04-23T19:11:45-00:00</lastmod>
+<lastmod>2014-04-23T19:44:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://commonq.github.io/categories.html</loc>
-<lastmod>2014-04-23T19:11:45-00:00</lastmod>
+<lastmod>2014-04-23T19:44:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -39,7 +39,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://commonq.github.io/test.html</loc>
+<loc>http://commonq.github.io/first.html</loc>
 <lastmod>2014-04-22T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
@@ -53,14 +53,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://commonq.github.io/tag/pelican.html</loc>
-<lastmod>2014-04-22T00:00:00-00:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://commonq.github.io/tag/publishing.html</loc>
+<loc>http://commonq.github.io/tag/blog-pelican.html</loc>
 <lastmod>2014-04-22T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
