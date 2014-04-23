@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>CommonQ's Blog</title><link href="http://commonq.github.io/" rel="alternate"></link><link href="http://commonq.github.io/feeds/blog.atom.xml" rel="self"></link><id>http://commonq.github.io/</id><updated>2014-04-22T00:00:00+08:00</updated><entry><title>My First Blog</title><link href="http://commonq.github.io/my-first-blog.html" rel="alternate"></link><updated>2014-04-22T00:00:00+08:00</updated><author><name>CommonQ</name></author><id>tag:commonq.github.io,2014-04-22:my-first-blog.html</id><summary type="html">&lt;h1&gt;这里是正文&lt;/h1&gt;
+&lt;p&gt;我的第一篇博客&lt;/p&gt;</summary></entry></feed>
