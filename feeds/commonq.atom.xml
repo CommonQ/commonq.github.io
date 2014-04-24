@@ -1,11 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>CommonQ's Blog</title><link href="http://commonq.github.io/" rel="alternate"></link><link href="http://commonq.github.io/feeds/commonq.atom.xml" rel="self"></link><id>http://commonq.github.io/</id><updated>2014-04-22T00:00:00+08:00</updated><entry><title>用Pelican和Github Pages在Linux上搭建个人博客</title><link href="http://commonq.github.io/build_my_blog.html" rel="alternate"></link><updated>2014-04-22T00:00:00+08:00</updated><author><name>CommonQ</name></author><id>tag:commonq.github.io,2014-04-22:build_my_blog.html</id><summary type="html">&lt;h3&gt;搭建环境&lt;/h3&gt;
-&lt;p&gt;在Linux环境下搭建，采用ubuntu，使用其它发行版过程基本相同。&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;Linux&lt;/code&gt;环境下搭建，采用&lt;code&gt;ubuntu&lt;/code&gt;，使用其它发行版过程基本相同。&lt;/p&gt;
 &lt;h3&gt;Github Pages&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;注册Github,注册和配置SSH密钥过程&lt;a href="http://help.github.com/articles/set-up-git"&gt;help page&lt;/a&gt;写得很清楚。&lt;/li&gt;
+&lt;li&gt;注册&lt;code&gt;Github&lt;/code&gt;,注册和配置&lt;code&gt;SSH&lt;/code&gt;密钥过程&lt;a href="http://help.github.com/articles/set-up-git"&gt;help page&lt;/a&gt;写得很清楚。&lt;/li&gt;
+&lt;li&gt;不过现在github支持http传输良好，所以也可以不用配置ＳＳＨ，通过用户名密码即可登录。&lt;/li&gt;
 &lt;li&gt;在Github创建一个名为username.github.io的版本库（将username替换成自己的Github账户名）。&lt;/li&gt;
 &lt;li&gt;Setting -&amp;gt; Automatic page generator -&amp;gt; Continue to layout，选择一个模板，并发布。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;这时在username.github.io页面就已经生成了一个页面。&lt;/p&gt;</summary><category term="Blog"></category><category term="Github"></category><category term="Pelican"></category><category term="Linux"></category></entry><entry><title>第一篇博客</title><link href="http://commonq.github.io/first_blog.html" rel="alternate"></link><updated>2014-04-22T00:00:00+08:00</updated><author><name>CommonQ</name></author><id>tag:commonq.github.io,2014-04-22:first_blog.html</id><summary type="html">&lt;h3&gt;纪念&lt;/h3&gt;
+&lt;p&gt;十分钟后在&lt;code&gt;username.github.io&lt;/code&gt;页面就已经生成了一个页面。访问该网址即可看到。&lt;/p&gt;
+&lt;h3&gt;配置本地环境&lt;/h3&gt;
+&lt;h4&gt;安装Ｐｅｌｉｃａｎ和Ｍａｒｋｄｏｗｎ：&lt;/h4&gt;
+&lt;p&gt;在这里我没有用&lt;code&gt;Jekyll&lt;/code&gt;因为它是&lt;code&gt;Ｒｕｂｙ&lt;/code&gt;写的对它没什么兴趣。所以我采用&lt;code&gt;Ｐｙｔｈｏｎ&lt;/code&gt;编写的&lt;code&gt;Ｐｅｌｉｃａｎ&lt;/code&gt;。&lt;/p&gt;
+&lt;h4&gt;介绍&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;Pelican&lt;/code&gt;是一套开源的使用&lt;code&gt;Python&lt;/code&gt;编写的博客静态生成, 可以添加文章和和创建页面, 可以使用&lt;code&gt;MarkDown&lt;/code&gt; &lt;code&gt;reStructuredText&lt;/code&gt; 和 &lt;code&gt;AsiiDoc&lt;/code&gt; 的格式来抒写, 同时使用 &lt;code&gt;Disqus&lt;/code&gt;评论系统, 支持 &lt;code&gt;RSS&lt;/code&gt;和&lt;code&gt;Atom&lt;/code&gt;输出, 插件, 主题, 代码高亮等功能, 采用&lt;code&gt;Jajin2&lt;/code&gt;模板引擎, 可以很容易的更改模板&lt;/p&gt;
+&lt;h4&gt;安装&lt;/h4&gt;
+&lt;p&gt;安装&lt;code&gt;Ｐｅｌｉｃａｎ&lt;/code&gt;有很多种方法。一种使用&lt;code&gt;ｐｙｔｈｏｎ&lt;/code&gt;的包管理器&lt;code&gt;ｐｉｐ&lt;/code&gt;进行安装。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$sudo&lt;/span&gt; apt-get install python-pip
+&lt;span class="nv"&gt;$sudo&lt;/span&gt; pip install pelican
+&lt;span class="nv"&gt;$sudo&lt;/span&gt; pip install markdown
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;另一种就是从&lt;code&gt;ｇｉｔｈｕｂ&lt;/code&gt;上克隆&lt;code&gt;Ｐｅｌｉｃａｎ&lt;/code&gt;。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone git://github.com/getpelican/pelican.git       
+&lt;span class="nb"&gt;cd &lt;/span&gt;pelican
+python setup.py install
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;写第一篇博客&lt;/h3&gt;
+&lt;h4&gt;搭建目录&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir blog
+&lt;span class="nb"&gt;cd &lt;/span&gt;blog
+pelican-quickstart
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在回答一系列问题过后你的博客就建成的, 主要生成下列文件:
+生成的目录结构:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;blog/
+├── content
+│   └── *.md             &lt;span class="c"&gt;# markdown文件&lt;/span&gt;
+├── output               &lt;span class="c"&gt;# 默认的输出目录&lt;/span&gt;
+├── develop_server.sh
+├── Makefile
+├── pelicanconf.py       &lt;span class="c"&gt;# 主配置文件&lt;/span&gt;
+└── publishconf.py
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;写一篇文章&lt;/h4&gt;
+&lt;p&gt;在 &lt;code&gt;content&lt;/code&gt;目录新建一个 &lt;code&gt;test.md&lt;/code&gt;文件, 填入一下内容:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;Title:&lt;/span&gt; &lt;span class="err"&gt;文章标题&lt;/span&gt;
+&lt;span class="nl"&gt;Date:&lt;/span&gt; &lt;span class="mi"&gt;2013&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mo"&gt;04&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;
+&lt;span class="nl"&gt;Category:&lt;/span&gt; &lt;span class="err"&gt;文章类别&lt;/span&gt;
+&lt;span class="nl"&gt;Tag:&lt;/span&gt; &lt;span class="err"&gt;标签&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;标签&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="err"&gt;这里是内容&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后执行&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;make html
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;生成了&lt;code&gt;ｈｔｍｌ&lt;/code&gt;。然后执行&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;./develop_server.sh start
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;开启一个测试服务器, 这会在本地 8000 端口建立一个测试web服务器, 可以使用浏览器打开:&lt;code&gt;http://localhost:8000&lt;/code&gt;来访问这个测试服务器, 然后就可以欣赏到你的博客了&lt;/p&gt;
+&lt;h4&gt;创建一个Ａｂｏｕｔ页面&lt;/h4&gt;
+&lt;p&gt;这里以创建 About页面为例&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;content&lt;/code&gt;目录创建pages目录&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir content/pages
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后创建&lt;code&gt;About.md&lt;/code&gt;并填入下面内容&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Title&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;About&lt;/span&gt; &lt;span class="n"&gt;Me&lt;/span&gt;
+&lt;span class="n"&gt;Date&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2013&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;04&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;
+
+&lt;span class="n"&gt;About&lt;/span&gt; &lt;span class="n"&gt;me&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;执行 &lt;code&gt;make html&lt;/code&gt; 生成&lt;code&gt;html&lt;/code&gt;, 然后打开&lt;code&gt;http://localhost:8000&lt;/code&gt;查看效果&lt;/p&gt;
+&lt;h3&gt;使用Ｐｅｌｉｃａｎ支持评论&lt;/h3&gt;
+&lt;p&gt;使用&lt;a href="http://disqus.com/"&gt;Disqus&lt;/a&gt;作为评论系统，注册帐号后直接在pelicanconf.conf中添加:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;DISQUS_SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;your_shortname&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后执行&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;make html
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使用浏览器打开:&lt;code&gt;http://localhost:8000&lt;/code&gt;来查看效果&lt;/p&gt;
+&lt;h3&gt;主题&lt;/h3&gt;
+&lt;p&gt;安装主题：
+Ｐｅｌｉｃａｎ本身提供很多主题可供选择，可以从&lt;code&gt;ｇｉｔｈｕｂ&lt;/code&gt;上&lt;code&gt;ｃｌｏｎｅ&lt;/code&gt;下来&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone https://github.com/getpelican/pelican-themes.git
+&lt;span class="nb"&gt;cd &lt;/span&gt;pelican-themes
+pelican-themes -i bootstrap2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中&lt;code&gt;bootstrap2&lt;/code&gt;是选择使用的主题，&lt;a href="http://github.com/getpelican/pelican-themes"&gt;pelican主题的Github目录&lt;/a&gt;下几乎每个都提供了预览.&lt;/p&gt;
+&lt;p&gt;然后，在配置文件&lt;code&gt;pelicanconf.py&lt;/code&gt;中添加：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;quot;bootstrap2&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;重新make，就生成了带有选定主题的页面。&lt;/p&gt;
+&lt;h3&gt;使用插件&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Pelican&lt;/code&gt; 一开始是将插件内置的, 但是新版本 &lt;code&gt;Pelican&lt;/code&gt;将插件隔离了出来, 所以我们要到github上 克隆一份新的插件, 在博客目录执行&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone git://github.com/getpelican/pelican-plugins.git    
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;现在我们博客目录就新添了一个 &lt;code&gt;pelican-plugins&lt;/code&gt;目录, 我们已配置sitemap插件为例, sitemap插件可以生成 sitemap.xml 供搜索引擎使用&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;pelicanconf.py&lt;/code&gt;配置文件里加上如下项:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;PLUGIN_PATH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;quot;pelican-plugins&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;sitemap&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;配置sitemap 插件&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;SITEMAP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;format&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;xml&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;priorities&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;articles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;indexes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;pages&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;changefreqs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;articles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;monthly&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;indexes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;daily&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;pages&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;monthly&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后再执行&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;make html
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;打开浏览器请求 &lt;code&gt;http://localhost:8000/sitemap.xml&lt;/code&gt;即可看到生成的 Sitemap 了&lt;/p&gt;
+&lt;h3&gt;添加Google Analytics&lt;/h3&gt;
+&lt;p&gt;去Google Analytics申请账号，记下跟踪ID。 在pelicanconf.py添加&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;GOOGLE_ANALYTICS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;跟踪&lt;/span&gt;&lt;span class="n"&gt;ID&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;使用Google Webmasters&lt;/h3&gt;
+&lt;p&gt;在&lt;a href="http://www.google.com/webmasters/"&gt;Google Webmasters&lt;/a&gt;上注册即可。
+这个就是Google站长工具，使用它的目的是为了让博客被Google更好的收录，比如手动让Googlebot抓取、提交Robots、更新Sitemap等等，各方面完爆百度站长工具。&lt;/p&gt;
+&lt;h3&gt;上传Ｇｉｔｈｕｂ&lt;/h3&gt;
+&lt;p&gt;最后在你的&lt;code&gt;ｏｕｔｐｕｔ&lt;/code&gt;文件夹内&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git init
+git add .
+git commit -m &lt;span class="s1"&gt;&amp;#39;first commit&amp;#39;&lt;/span&gt; 
+git remote add origin git@github.com:yourname/yourname.github.io.git
+git push -u origin master
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这样就大功告成了！&lt;/p&gt;</summary><category term="Blog"></category><category term="Github"></category><category term="Pelican"></category><category term="Linux"></category></entry><entry><title>第一篇博客</title><link href="http://commonq.github.io/first_blog.html" rel="alternate"></link><updated>2014-04-22T00:00:00+08:00</updated><author><name>CommonQ</name></author><id>tag:commonq.github.io,2014-04-22:first_blog.html</id><summary type="html">&lt;h3&gt;纪念&lt;/h3&gt;
 &lt;p&gt;2014年4月22日搭建了一天的博客终于成功了，在此留念！&lt;/p&gt;</summary><category term="Blog"></category><category term="Mood"></category></entry></feed>

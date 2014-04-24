@@ -69,14 +69,178 @@
             </footer><!-- /.post-info -->
             <div class="entry-content">
               <h3>搭建环境</h3>
-<p>在Linux环境下搭建，采用ubuntu，使用其它发行版过程基本相同。</p>
+<p>在<code>Linux</code>环境下搭建，采用<code>ubuntu</code>，使用其它发行版过程基本相同。</p>
 <h3>Github Pages</h3>
 <ul>
-<li>注册Github,注册和配置SSH密钥过程<a href="http://help.github.com/articles/set-up-git">help page</a>写得很清楚。</li>
+<li>注册<code>Github</code>,注册和配置<code>SSH</code>密钥过程<a href="http://help.github.com/articles/set-up-git">help page</a>写得很清楚。</li>
+<li>不过现在github支持http传输良好，所以也可以不用配置ＳＳＨ，通过用户名密码即可登录。</li>
 <li>在Github创建一个名为username.github.io的版本库（将username替换成自己的Github账户名）。</li>
 <li>Setting -&gt; Automatic page generator -&gt; Continue to layout，选择一个模板，并发布。</li>
 </ul>
-<p>这时在username.github.io页面就已经生成了一个页面。</p>
+<p>十分钟后在<code>username.github.io</code>页面就已经生成了一个页面。访问该网址即可看到。</p>
+<h3>配置本地环境</h3>
+<h4>安装Ｐｅｌｉｃａｎ和Ｍａｒｋｄｏｗｎ：</h4>
+<p>在这里我没有用<code>Jekyll</code>因为它是<code>Ｒｕｂｙ</code>写的对它没什么兴趣。所以我采用<code>Ｐｙｔｈｏｎ</code>编写的<code>Ｐｅｌｉｃａｎ</code>。</p>
+<h4>介绍</h4>
+<p><code>Pelican</code>是一套开源的使用<code>Python</code>编写的博客静态生成, 可以添加文章和和创建页面, 可以使用<code>MarkDown</code> <code>reStructuredText</code> 和 <code>AsiiDoc</code> 的格式来抒写, 同时使用 <code>Disqus</code>评论系统, 支持 <code>RSS</code>和<code>Atom</code>输出, 插件, 主题, 代码高亮等功能, 采用<code>Jajin2</code>模板引擎, 可以很容易的更改模板</p>
+<h4>安装</h4>
+<p>安装<code>Ｐｅｌｉｃａｎ</code>有很多种方法。一种使用<code>ｐｙｔｈｏｎ</code>的包管理器<code>ｐｉｐ</code>进行安装。</p>
+<div class="highlight"><pre><span class="nv">$sudo</span> apt-get install python-pip
+<span class="nv">$sudo</span> pip install pelican
+<span class="nv">$sudo</span> pip install markdown
+</pre></div>
+
+
+<p>另一种就是从<code>ｇｉｔｈｕｂ</code>上克隆<code>Ｐｅｌｉｃａｎ</code>。</p>
+<div class="highlight"><pre>git clone git://github.com/getpelican/pelican.git       
+<span class="nb">cd </span>pelican
+python setup.py install
+</pre></div>
+
+
+<h3>写第一篇博客</h3>
+<h4>搭建目录</h4>
+<div class="highlight"><pre>mkdir blog
+<span class="nb">cd </span>blog
+pelican-quickstart
+</pre></div>
+
+
+<p>在回答一系列问题过后你的博客就建成的, 主要生成下列文件:
+生成的目录结构:</p>
+<div class="highlight"><pre>blog/
+├── content
+│   └── *.md             <span class="c"># markdown文件</span>
+├── output               <span class="c"># 默认的输出目录</span>
+├── develop_server.sh
+├── Makefile
+├── pelicanconf.py       <span class="c"># 主配置文件</span>
+└── publishconf.py
+</pre></div>
+
+
+<h4>写一篇文章</h4>
+<p>在 <code>content</code>目录新建一个 <code>test.md</code>文件, 填入一下内容:</p>
+<div class="highlight"><pre><span class="nl">Title:</span> <span class="err">文章标题</span>
+<span class="nl">Date:</span> <span class="mi">2013</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">18</span>
+<span class="nl">Category:</span> <span class="err">文章类别</span>
+<span class="nl">Tag:</span> <span class="err">标签</span><span class="mi">1</span><span class="p">,</span> <span class="err">标签</span><span class="mi">2</span>
+<span class="err">这里是内容</span>
+</pre></div>
+
+
+<p>然后执行</p>
+<div class="highlight"><pre>make html
+</pre></div>
+
+
+<p>生成了<code>ｈｔｍｌ</code>。然后执行</p>
+<div class="highlight"><pre>./develop_server.sh start
+</pre></div>
+
+
+<p>开启一个测试服务器, 这会在本地 8000 端口建立一个测试web服务器, 可以使用浏览器打开:<code>http://localhost:8000</code>来访问这个测试服务器, 然后就可以欣赏到你的博客了</p>
+<h4>创建一个Ａｂｏｕｔ页面</h4>
+<p>这里以创建 About页面为例</p>
+<p>在<code>content</code>目录创建pages目录</p>
+<div class="highlight"><pre>mkdir content/pages
+</pre></div>
+
+
+<p>然后创建<code>About.md</code>并填入下面内容</p>
+<div class="highlight"><pre><span class="n">Title</span><span class="o">:</span> <span class="n">About</span> <span class="n">Me</span>
+<span class="n">Date</span><span class="o">:</span> <span class="mi">2013</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">18</span>
+
+<span class="n">About</span> <span class="n">me</span> <span class="n">content</span>
+</pre></div>
+
+
+<p>执行 <code>make html</code> 生成<code>html</code>, 然后打开<code>http://localhost:8000</code>查看效果</p>
+<h3>使用Ｐｅｌｉｃａｎ支持评论</h3>
+<p>使用<a href="http://disqus.com/">Disqus</a>作为评论系统，注册帐号后直接在pelicanconf.conf中添加:</p>
+<div class="highlight"><pre><span class="n">DISQUS_SITENAME</span> <span class="o">=</span> <span class="n">your_shortname</span>
+</pre></div>
+
+
+<p>然后执行</p>
+<div class="highlight"><pre>make html
+</pre></div>
+
+
+<p>使用浏览器打开:<code>http://localhost:8000</code>来查看效果</p>
+<h3>主题</h3>
+<p>安装主题：
+Ｐｅｌｉｃａｎ本身提供很多主题可供选择，可以从<code>ｇｉｔｈｕｂ</code>上<code>ｃｌｏｎｅ</code>下来</p>
+<div class="highlight"><pre>git clone https://github.com/getpelican/pelican-themes.git
+<span class="nb">cd </span>pelican-themes
+pelican-themes -i bootstrap2
+</pre></div>
+
+
+<p>其中<code>bootstrap2</code>是选择使用的主题，<a href="http://github.com/getpelican/pelican-themes">pelican主题的Github目录</a>下几乎每个都提供了预览.</p>
+<p>然后，在配置文件<code>pelicanconf.py</code>中添加：</p>
+<div class="highlight"><pre><span class="n">THEME</span> <span class="o">=</span> <span class="s">u&quot;bootstrap2&#39;</span>
+</pre></div>
+
+
+<p>重新make，就生成了带有选定主题的页面。</p>
+<h3>使用插件</h3>
+<p><code>Pelican</code> 一开始是将插件内置的, 但是新版本 <code>Pelican</code>将插件隔离了出来, 所以我们要到github上 克隆一份新的插件, 在博客目录执行</p>
+<div class="highlight"><pre>git clone git://github.com/getpelican/pelican-plugins.git    
+</pre></div>
+
+
+<p>现在我们博客目录就新添了一个 <code>pelican-plugins</code>目录, 我们已配置sitemap插件为例, sitemap插件可以生成 sitemap.xml 供搜索引擎使用</p>
+<p>在<code>pelicanconf.py</code>配置文件里加上如下项:</p>
+<div class="highlight"><pre><span class="n">PLUGIN_PATH</span> <span class="o">=</span> <span class="s">u&quot;pelican-plugins&quot;</span>
+
+<span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;sitemap&quot;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>配置sitemap 插件</p>
+<div class="highlight"><pre><span class="n">SITEMAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&quot;format&quot;</span><span class="p">:</span> <span class="s">&quot;xml&quot;</span><span class="p">,</span>
+    <span class="s">&quot;priorities&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;articles&quot;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+        <span class="s">&quot;indexes&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="s">&quot;pages&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s">&quot;changefreqs&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;articles&quot;</span><span class="p">:</span> <span class="s">&quot;monthly&quot;</span><span class="p">,</span>
+        <span class="s">&quot;indexes&quot;</span><span class="p">:</span> <span class="s">&quot;daily&quot;</span><span class="p">,</span>
+        <span class="s">&quot;pages&quot;</span><span class="p">:</span> <span class="s">&quot;monthly&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>然后再执行</p>
+<div class="highlight"><pre>make html
+</pre></div>
+
+
+<p>打开浏览器请求 <code>http://localhost:8000/sitemap.xml</code>即可看到生成的 Sitemap 了</p>
+<h3>添加Google Analytics</h3>
+<p>去Google Analytics申请账号，记下跟踪ID。 在pelicanconf.py添加</p>
+<div class="highlight"><pre><span class="n">GOOGLE_ANALYTICS</span> <span class="o">=</span> <span class="err">跟踪</span><span class="n">ID</span>
+</pre></div>
+
+
+<h3>使用Google Webmasters</h3>
+<p>在<a href="http://www.google.com/webmasters/">Google Webmasters</a>上注册即可。
+这个就是Google站长工具，使用它的目的是为了让博客被Google更好的收录，比如手动让Googlebot抓取、提交Robots、更新Sitemap等等，各方面完爆百度站长工具。</p>
+<h3>上传Ｇｉｔｈｕｂ</h3>
+<p>最后在你的<code>ｏｕｔｐｕｔ</code>文件夹内</p>
+<div class="highlight"><pre>git init
+git add .
+git commit -m <span class="s1">&#39;first commit&#39;</span> 
+git remote add origin git@github.com:yourname/yourname.github.io.git
+git push -u origin master
+</pre></div>
+
+
+<p>这样就大功告成了！</p>
             </div><!-- /.entry-content -->
             <div class="comments">
               <h3>Comments</h3>
@@ -112,11 +276,11 @@
 
 <h4>Tags</h4>
 	<ul>
-	    <li class="tag-4"><a href="http://commonq.github.io/tag/pelican.html">Pelican</a></li>
 	    <li class="tag-1"><a href="http://commonq.github.io/tag/blog.html">Blog</a></li>
-	    <li class="tag-4"><a href="http://commonq.github.io/tag/linux.html">Linux</a></li>
 	    <li class="tag-4"><a href="http://commonq.github.io/tag/github.html">Github</a></li>
+	    <li class="tag-4"><a href="http://commonq.github.io/tag/pelican.html">Pelican</a></li>
 	    <li class="tag-4"><a href="http://commonq.github.io/tag/mood.html">Mood</a></li>
+	    <li class="tag-4"><a href="http://commonq.github.io/tag/linux.html">Linux</a></li>
 </ul>
 
 
