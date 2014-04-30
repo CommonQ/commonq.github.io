@@ -36,13 +36,13 @@ android应用程序开发环境： 包括eclipse、java、 android sdk、 adt等
 3. 设置Location为&lt;NDK安装目录&gt;\ndk-build.cmd
 4. 设置Working Directory为${workspace_loc:/项目名称}&lt;br /&gt;
 截图如下：&lt;br /&gt;
-&lt;a href="/images/ndk_configure.jpg"&gt;img&lt;/a&gt;&lt;br /&gt;
+&lt;img alt="img" src="/images/ndk_configure.jpg" /&gt;&lt;br /&gt;
 5. 切换到Refersh选项卡，给Refersh resources upon completion打上勾，选择The entire resource选项。&lt;br /&gt;
 截图如下：&lt;br /&gt;
-&lt;a href="/images/ndk_configure2.jpg"&gt;img&lt;/a&gt;&lt;br /&gt;
+&lt;img alt="img" src="/images/ndk_configure2.jpg" /&gt;&lt;br /&gt;
 6. 切换到Build Options选项卡，勾选上最后三项。再点击Specify Resource按钮，选择你的android工程的jni目录。&lt;br /&gt;
 截图如下：&lt;br /&gt;
-&lt;a href="/images/ndk_configure3.jpg"&gt;img&lt;/a&gt;&lt;br /&gt;
+&lt;img alt="img" src="/images/ndk_configure3.jpg" /&gt;&lt;br /&gt;
 7. 在编译工具列表，我们最好将我们新建的编译器置顶。选中点击Up按钮置顶。避免重复编译两次&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">CommonQ</dc:creator><pubDate>Wed, 30 Apr 2014 00:00:00 +0800</pubDate><guid>tag:commonq.github.io,2014-04-30:Android_ndk_1.html</guid><category>Android</category><category>NDK</category></item><item><title>用Pelican和Github Pages在Linux上搭建个人博客</title><link>http://commonq.github.io/build_my_blog.html</link><description>&lt;h3&gt;搭建环境&lt;/h3&gt;
 &lt;p&gt;在&lt;code&gt;Linux&lt;/code&gt;环境下搭建，采用&lt;code&gt;ubuntu&lt;/code&gt;，使用其它发行版过程基本相同。&lt;/p&gt;
 &lt;h3&gt;Github Pages&lt;/h3&gt;
