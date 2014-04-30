@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>CommonQ's Blog</title><link href="http://commonq.github.io/" rel="alternate"></link><link href="http://commonq.github.io/feeds/all-zh.atom.xml" rel="self"></link><id>http://commonq.github.io/</id><updated>2014-04-22T00:00:00+08:00</updated><entry><title>用Pelican和Github Pages在Linux上搭建个人博客</title><link href="http://commonq.github.io/build_my_blog.html" rel="alternate"></link><updated>2014-04-22T00:00:00+08:00</updated><author><name>CommonQ</name></author><id>tag:commonq.github.io,2014-04-22:build_my_blog.html</id><summary type="html">&lt;h3&gt;搭建环境&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>CommonQ's Blog</title><link href="http://commonq.github.io/" rel="alternate"></link><link href="http://commonq.github.io/feeds/all-zh.atom.xml" rel="self"></link><id>http://commonq.github.io/</id><updated>2014-04-30T00:00:00+08:00</updated><entry><title>Android JNI和NDK学习(1)--搭建开发环境</title><link href="http://commonq.github.io/Android_ndk_1.html" rel="alternate"></link><updated>2014-04-30T00:00:00+08:00</updated><author><name>CommonQ</name></author><id>tag:commonq.github.io,2014-04-30:Android_ndk_1.html</id><summary type="html">&lt;h3&gt;NDK简介&lt;/h3&gt;
+&lt;p&gt;NDK的好处:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="err"&gt;代码的保护，由于&lt;/span&gt;&lt;span class="n"&gt;apk&lt;/span&gt;&lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="err"&gt;层代码很容易被反编译，而&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="err"&gt;库反汇难度较大。&lt;/span&gt;
+
+&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="err"&gt;在&lt;/span&gt;&lt;span class="n"&gt;NDK&lt;/span&gt;&lt;span class="err"&gt;中调用第三方&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="err"&gt;库，因为大部分的开源库都是用&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="err"&gt;代码编写的。&lt;/span&gt;
+
+&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="err"&gt;便于移植，用&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="err"&gt;写得库可以方便在其他的嵌入式平台上再次使用。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Linux下NDK环境搭建&lt;/h3&gt;
+&lt;p&gt;android的NDK开发需要在linux下进行： 因为需要把C/C++编写的代码生成能在arm上运行的.so文件，这就需要用到交叉编译环境，而交叉编译需要在linux系统下才能完成。
+安装&lt;code&gt;android-ndk&lt;/code&gt;开发包，在google android 官网下载： 通过这个开发包的工具才能将android jni 的C/C++的代码编译成库
+android应用程序开发环境： 包括eclipse、java、 android sdk、 adt等。
+安装完之后，需要将android-ndk的路劲加到环境变量PATH中：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;gedit&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;environment&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在environment的PATH环境变量中添加你的&lt;code&gt;android-ndk&lt;/code&gt;的安装路劲，然后再让这个更改的环境变量立即生效：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt; &lt;span class="n"&gt;source&lt;/span&gt;  &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;environment&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;经过了上述步骤，在命令行下敲：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ndk&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bulid&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;弹出如下的错误，而不是说&lt;code&gt;ndk-build not found&lt;/code&gt;，就说明ndk环境已经安装成功了。&lt;/p&gt;
+&lt;h3&gt;Windows下NDK环境搭建&lt;/h3&gt;
+&lt;p&gt;在NDKr7开始，google的windos版NDK提供了一个ndk-build.cmd的脚本，这样就可以直接利用这个脚本编译，而不需要cygwin了。前面章节我介绍了NDK利用cygwin来进行配置（《NDK利用cygwin环境配置》），现在开始我们要与时俱进了,其实不同之处就是设置c/c++编译器的不同了。&lt;br /&gt;
+1. 选择你的android工程，右击选择Properties，弹出配置界面，之后再点击Builders，弹出项目的编译编译工具        列表，之后点击new，新添加一个编译器，点击之后出现添加界面，选择Program，点击ok。
+2. 出现了添加界面，我们先给编译器设置名称，如XXX_builder。
+3. 设置Location为&lt;NDK安装目录&gt;\ndk-build.cmd
+4. 设置Working Directory为${workspace_loc:/项目名称}&lt;br /&gt;
+截图如下：&lt;br /&gt;
+&lt;a href="/images/ndk_configure.jpg"&gt;img&lt;/a&gt;&lt;br /&gt;
+5. 切换到Refersh选项卡，给Refersh resources upon completion打上勾，选择The entire resource选项。&lt;br /&gt;
+截图如下：&lt;br /&gt;
+&lt;a href="/images/ndk_configure2.jpg"&gt;img&lt;/a&gt;&lt;br /&gt;
+6. 切换到Build Options选项卡，勾选上最后三项。再点击Specify Resource按钮，选择你的android工程的jni目录。&lt;br /&gt;
+截图如下：&lt;br /&gt;
+&lt;a href="/images/ndk_configure3.jpg"&gt;img&lt;/a&gt;&lt;br /&gt;
+7. 在编译工具列表，我们最好将我们新建的编译器置顶。选中点击Up按钮置顶。避免重复编译两次&lt;/p&gt;</summary><category term="Android"></category><category term="NDK"></category></entry><entry><title>用Pelican和Github Pages在Linux上搭建个人博客</title><link href="http://commonq.github.io/build_my_blog.html" rel="alternate"></link><updated>2014-04-22T00:00:00+08:00</updated><author><name>CommonQ</name></author><id>tag:commonq.github.io,2014-04-22:build_my_blog.html</id><summary type="html">&lt;h3&gt;搭建环境&lt;/h3&gt;
 &lt;p&gt;在&lt;code&gt;Linux&lt;/code&gt;环境下搭建，采用&lt;code&gt;ubuntu&lt;/code&gt;，使用其它发行版过程基本相同。&lt;/p&gt;
 &lt;h3&gt;Github Pages&lt;/h3&gt;
 &lt;ul&gt;

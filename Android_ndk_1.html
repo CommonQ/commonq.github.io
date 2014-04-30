@@ -2,9 +2,10 @@
 <html lang="zh">
 <head>
 
-        <title>CommonQ's Blog - Articles by CommonQ</title>
+        <title>Android JNI和NDK学习(1)--搭建开发环境</title>
         <meta charset="utf-8" />
         <link href="http://commonq.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="CommonQ's Blog Full Atom Feed" />
+        <link href="http://commonq.github.io/feeds/android.atom.xml" type="application/atom+xml" rel="alternate" title="CommonQ's Blog Categories Atom Feed" />
 
 
         <!-- Mobile viewport optimized: j.mp/bplateviewport -->
@@ -40,28 +41,35 @@
               <ul class="columns">
                 <li><a href="http://commonq.github.io">Home</a></li>
 
-                  <li><a href="http://commonq.github.io/category/android.html">Android</a></li>
+                  <li class="active"><a href="http://commonq.github.io/category/android.html">Android</a></li>
                   <li><a href="http://commonq.github.io/category/blog.html">Blog</a></li>
                   <li><a href="http://commonq.github.io/category/mood.html">Mood</a></li>
 
               </ul>
             </div>
 
-<section id="content">
-<h2>Articles by CommonQ</h2>
-
+<section id="content" class="body">
 
    <div class="row">
-
-
         <div class="eleven columns">
-		         <ol id="post-list">
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="http://commonq.github.io/Android_ndk_1.html" rel="bookmark" title="Permalink to Android JNI和NDK学习(1)--搭建开发环境">Android JNI和NDK学习(1)--搭建开发环境</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2014-04-30T00:00:00"> Wed 30 April 2014 </abbr>
-<address class="vcard author">By <a class="url fn" href="http://commonq.github.io/author/commonq.html">CommonQ</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <h3>NDK简介</h3>
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="http://commonq.github.io/Android_ndk_1.html" rel="bookmark"
+                   title="Permalink to Android JNI和NDK学习(1)--搭建开发环境">Android JNI和NDK学习(1)--搭建开发环境</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2014-04-30T00:00:00">
+                Wed 30 April 2014
+              </abbr>
+              <address class="vcard author">
+                By <a class="url fn" href="http://commonq.github.io/author/commonq.html">CommonQ</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h3>NDK简介</h3>
 <p>NDK的好处:</p>
 <div class="highlight"><pre><span class="mf">1.</span> <span class="err">代码的保护，由于</span><span class="n">apk</span><span class="err">的</span><span class="n">java</span><span class="err">层代码很容易被反编译，而</span><span class="n">C</span><span class="o">/</span><span class="n">C</span><span class="o">++</span><span class="err">库反汇难度较大。</span>
 
@@ -74,76 +82,52 @@
 <h3>Linux下NDK环境搭建</h3>
 <p>android的NDK开发需要在linux下进行： 因为需要把C/C++编写的代码生成能在arm上运行的.so文件，这就需要用到交叉编译环境，而交叉编译需要在linux系统下才能完成。
 安装<code>android-ndk</code>开发包，在google android 官网下载： 通过这个开发包的工具才能将android jni 的C/C++的代码编译成库
-android应用程序开发环境 ...</p> </div><!-- /.entry-content -->
-
-								<div class="medium primary btn"><a href="http://commonq.github.io/Android_ndk_1.html" rel="bookmark" title="Permalink to Android JNI和NDK学习(1)--搭建开发环境">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="http://commonq.github.io/tag/android.html">Android</a>
-											<a class="danger label" href="http://commonq.github.io/tag/ndk.html">NDK</a>
-								</div>
+android应用程序开发环境： 包括eclipse、java、 android sdk、 adt等。
+安装完之后，需要将android-ndk的路劲加到环境变量PATH中：</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">gedit</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">environment</span>
+</pre></div>
 
 
-
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="http://commonq.github.io/build_my_blog.html" rel="bookmark" title="Permalink to 用Pelican和Github Pages在Linux上搭建个人博客">用Pelican和Github Pages在Linux上搭建个人博客</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2014-04-22T00:00:00"> Tue 22 April 2014 </abbr>
-<address class="vcard author">By <a class="url fn" href="http://commonq.github.io/author/commonq.html">CommonQ</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <h3>搭建环境</h3>
-<p>在<code>Linux</code>环境下搭建，采用<code>ubuntu</code>，使用其它发行版过程基本相同。</p>
-<h3>Github Pages</h3>
-<ul>
-<li>注册<code>Github</code>,注册和配置<code>SSH</code>密钥过程<a href="http://help.github.com/articles/set-up-git">help page</a>写得很清楚。</li>
-<li>不过现在github支持http传输良好，所以也可以不用配置ＳＳＨ，通过用户名密码即可登录。</li>
-<li>在Github创建一个名为username.github.io的版本库（将username替换成自己的Github账户名）。</li>
-<li>Setting -&gt; Automatic page generator -&gt; Continue to layout，选择一个模板，并发布。</li>
-</ul>
-<p>十分钟后在<code>username.github.io</code>页面就已经生成了一个页面。访问该网址即可看到。</p>
-<h3>配置本地环境</h3>
-<h4>安装Ｐｅｌｉｃａｎ和Ｍａｒｋｄｏｗｎ：</h4>
-<p>在这里我没有用<code>Jekyll</code>因为它是<code>Ｒｕｂｙ</code>写的对它没什么兴趣。所以我采用<code>Ｐｙｔｈｏｎ</code>编写的<code>Ｐｅｌｉｃａｎ ...</code></p> </div><!-- /.entry-content -->
-
-								<div class="medium primary btn"><a href="http://commonq.github.io/build_my_blog.html" rel="bookmark" title="Permalink to 用Pelican和Github Pages在Linux上搭建个人博客">Read more <i class="icon-arrow-right"></i></a></div>
+<p>在environment的PATH环境变量中添加你的<code>android-ndk</code>的安装路劲，然后再让这个更改的环境变量立即生效：</p>
+<div class="highlight"><pre> <span class="n">source</span>  <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">environment</span>
+</pre></div>
 
 
-
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="http://commonq.github.io/tag/blog.html">Blog</a>
-											<a class="danger label" href="http://commonq.github.io/tag/github.html">Github</a>
-											<a class="danger label" href="http://commonq.github.io/tag/pelican.html">Pelican</a>
-											<a class="danger label" href="http://commonq.github.io/tag/linux.html">Linux</a>
-								</div>
+<p>经过了上述步骤，在命令行下敲：</p>
+<div class="highlight"><pre><span class="n">ndk</span><span class="o">-</span><span class="n">bulid</span>
+</pre></div>
 
 
+<p>弹出如下的错误，而不是说<code>ndk-build not found</code>，就说明ndk环境已经安装成功了。</p>
+<h3>Windows下NDK环境搭建</h3>
+<p>在NDKr7开始，google的windos版NDK提供了一个ndk-build.cmd的脚本，这样就可以直接利用这个脚本编译，而不需要cygwin了。前面章节我介绍了NDK利用cygwin来进行配置（《NDK利用cygwin环境配置》），现在开始我们要与时俱进了,其实不同之处就是设置c/c++编译器的不同了。<br />
+1. 选择你的android工程，右击选择Properties，弹出配置界面，之后再点击Builders，弹出项目的编译编译工具        列表，之后点击new，新添加一个编译器，点击之后出现添加界面，选择Program，点击ok。
+2. 出现了添加界面，我们先给编译器设置名称，如XXX_builder。
+3. 设置Location为<NDK安装目录>\ndk-build.cmd
+4. 设置Working Directory为${workspace_loc:/项目名称}<br />
+截图如下：<br />
+<a href="/images/ndk_configure.jpg">img</a><br />
+5. 切换到Refersh选项卡，给Refersh resources upon completion打上勾，选择The entire resource选项。<br />
+截图如下：<br />
+<a href="/images/ndk_configure2.jpg">img</a><br />
+6. 切换到Build Options选项卡，勾选上最后三项。再点击Specify Resource按钮，选择你的android工程的jni目录。<br />
+截图如下：<br />
+<a href="/images/ndk_configure3.jpg">img</a><br />
+7. 在编译工具列表，我们最好将我们新建的编译器置顶。选中点击Up按钮置顶。避免重复编译两次</p>
+            </div><!-- /.entry-content -->
+            <div class="comments">
+              <h3>Comments</h3>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_identifier = "Android_ndk_1.html";
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://commonq.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="http://commonq.github.io/first_blog.html" rel="bookmark" title="Permalink to 第一篇博客">第一篇博客</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2014-04-22T00:00:00"> Tue 22 April 2014 </abbr>
-<address class="vcard author">By <a class="url fn" href="http://commonq.github.io/author/commonq.html">CommonQ</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>博客搭建了一天终于成功了</p> </div><!-- /.entry-content -->
-
-								<div class="medium primary btn"><a href="http://commonq.github.io/first_blog.html" rel="bookmark" title="Permalink to 第一篇博客">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="http://commonq.github.io/tag/blog.html">Blog</a>
-											<a class="danger label" href="http://commonq.github.io/tag/mood.html">Mood</a>
-								</div>
-
-
-
-				        </article></li>
-				</ol><!-- /#posts-list -->
 
         </div><!-- /.eleven.columns -->
         
@@ -152,7 +136,7 @@ android应用程序开发环境 ...</p> </div><!-- /.entry-content -->
 <h4>Pages</h4>
 
  <ul>
-        <li><a href="http://commonq.github.io/category/android.html">Android</a></li>
+        <li class="active"><a href="http://commonq.github.io/category/android.html">Android</a></li>
         <li><a href="http://commonq.github.io/category/blog.html">Blog</a></li>
         <li><a href="http://commonq.github.io/category/mood.html">Mood</a></li>
   </ul>
@@ -187,10 +171,8 @@ android应用程序开发环境 ...</p> </div><!-- /.entry-content -->
 
 </div> </div><!-- /.row -->
 
-<p class="paginator">
-    Page 1 / 1
-</p>
-</section><!-- /#content -->
+
+</section>
 
        </div><!-- /.row -->
     </div><!-- /.container -->
