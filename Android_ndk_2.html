@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+
+        <title>Android JNI和NDK学习(2)--编程入门</title>
+        <meta charset="utf-8" />
+        <link href="http://commonq.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="CommonQ's Blog Full Atom Feed" />
+        <link href="http://commonq.github.io/feeds/android.atom.xml" type="application/atom+xml" rel="alternate" title="CommonQ's Blog Categories Atom Feed" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="http://commonq.github.io/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="http://commonq.github.io/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="http://commonq.github.io/theme/pygment.css" />
+
+        <script src="http://commonq.github.io/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="http://commonq.github.io">CommonQ's Blog <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="http://commonq.github.io">Home</a></li>
+
+                  <li class="active"><a href="http://commonq.github.io/category/android.html">Android</a></li>
+                  <li><a href="http://commonq.github.io/category/blog.html">Blog</a></li>
+                  <li><a href="http://commonq.github.io/category/mood.html">Mood</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="http://commonq.github.io/Android_ndk_2.html" rel="bookmark"
+                   title="Permalink to Android JNI和NDK学习(2)--编程入门">Android JNI和NDK学习(2)--编程入门</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2014-04-30T00:00:00">
+                Wed 30 April 2014
+              </abbr>
+              <address class="vcard author">
+                By <a class="url fn" href="http://commonq.github.io/author/commonq.html">CommonQ</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h3>NDK代码编写</h3>
+<h4><strong>1. 首先是Java代码的编写</strong></h4>
+<p>Android NDK Sample里面的<em>Hello-jni</em>工程.<br />
+<em>Hellojni.java</em></p>
+<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm"> * Copyright (C) 2009 The Android Open Source Project</span>
+<span class="cm"> *</span>
+<span class="cm"> * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="cm"> * you may not use this file except in compliance with the License.</span>
+<span class="cm"> * You may obtain a copy of the License at</span>
+<span class="cm"> *</span>
+<span class="cm"> *      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="cm"> *</span>
+<span class="cm"> * Unless required by applicable law or agreed to in writing, software</span>
+<span class="cm"> * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="cm"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm"> * See the License for the specific language governing permissions and</span>
+<span class="cm"> * limitations under the License.</span>
+<span class="cm"> */</span>
+<span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">example</span><span class="o">.</span><span class="na">hellojni</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">android.app.Activity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.widget.TextView</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.Bundle</span><span class="o">;</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloJni</span> <span class="kd">extends</span> <span class="n">Activity</span>
+<span class="o">{</span>
+    <span class="cm">/** Called when the activity is first created. */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+
+        <span class="cm">/* Create a TextView and set its content.</span>
+<span class="cm">         * the text is retrieved by calling a native</span>
+<span class="cm">         * function.</span>
+<span class="cm">         */</span>
+        <span class="n">TextView</span>  <span class="n">tv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TextView</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">tv</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span> <span class="n">stringFromJNI</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="n">tv</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/* A native method that is implemented by the</span>
+<span class="cm">     * &#39;hello-jni&#39; native library, which is packaged</span>
+<span class="cm">     * with this application.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kd">native</span> <span class="n">String</span>  <span class="nf">stringFromJNI</span><span class="o">();</span>
+
+    <span class="cm">/* This is another native method declaration that is *not*</span>
+<span class="cm">     * implemented by &#39;hello-jni&#39;. This is simply to show that</span>
+<span class="cm">     * you can declare as many native methods in your Java code</span>
+<span class="cm">     * as you want, their implementation is searched in the</span>
+<span class="cm">     * currently loaded native libraries only the first time</span>
+<span class="cm">     * you call them.</span>
+<span class="cm">     *</span>
+<span class="cm">     * Trying to call this function will result in a</span>
+<span class="cm">     * java.lang.UnsatisfiedLinkError exception !</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kd">native</span> <span class="n">String</span>  <span class="nf">unimplementedStringFromJNI</span><span class="o">();</span>
+
+    <span class="cm">/* this is used to load the &#39;hello-jni&#39; library on application</span>
+<span class="cm">     * startup. The library has already been unpacked into</span>
+<span class="cm">     * /data/data/com.example.hellojni/lib/libhello-jni.so at</span>
+<span class="cm">     * installation time by the package manager.</span>
+<span class="cm">     */</span>
+    <span class="kd">static</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span><span class="s">&quot;hello-jni&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>这段代码很简单，注释也很清晰，这里只提两点：:</p>
+<div class="highlight"><pre><span class="kd">static</span><span class="o">{</span> 
+<span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span><span class="s">&quot;hello-jni&quot;</span><span class="o">);</span> 
+<span class="o">}</span>
+</pre></div>
+
+
+<p>表明程序开始运行的时候会加载hello-jni, static区声明的代码会先于onCreate方法执行,因为这是属于类的静态方法。如果你的程序中有多个类，而且如果HelloJni这个类不是你应用程序的入口，那么hello-jni（完整的名字是libhello-jni.so）这个库会在第一次使用HelloJni这个类的时候加载。</p>
+<div class="highlight"><pre><span class="kd">public</span> <span class="kd">native</span> <span class="n">String</span> <span class="nf">stringFromJNI</span><span class="o">();</span> 
+<span class="kd">public</span> <span class="kd">native</span> <span class="n">String</span> <span class="nf">unimplementedStringFromJNI</span><span class="o">();</span>
+</pre></div>
+
+
+<p>可以看到这两个方法的声明中有 native 关键字， 这个关键字表示这两个方法是本地方法，也就是说这两个方法是通过本地代码（C/C++）实现的，在java代码中仅仅是声明。</p>
+<p>用eclipse编译该工程，生成相应的.class文件，这步必须在下一步之前完成，因为生成.h文件需要用到相应的.class文件。</p>
+<h4><strong>2.编写C/C++代码</strong></h4>
+<p>利用<code>javah</code>这个工具生成相应的.h文件，然后根据这个.h文件编写相应的C/C++代码。</p>
+<h4>2.1 生成相应.h文件：</h4>
+<p>就拿我这的环境来说，首先在终端下进入刚刚建立的HelloJni工程的目录：</p>
+<div class="highlight"><pre>~<span class="nv">$ </span><span class="nb">cd </span>workspace/android/NDK/hello-jni/
+</pre></div>
+
+
+<p>ls查看工程文件</p>
+<div class="highlight"><pre>~/workspace/android/NDK/hello-jni<span class="nv">$ </span>ls 
+AndroidManifest.xml  assets  bin  default.properties  gen  res  src 
+</pre></div>
+
+
+<p>可以看到目前仅仅有几个标准的android应用程序的文件（夹）。</p>
+<p>首先我们在工程目录下建立一个jni文件夹：</p>
+<div class="highlight"><pre>~/workspace/android/NDK/hello-jni<span class="nv">$ </span>mkdir jni 
+~/workspace/android/NDK/hello-jni<span class="nv">$ </span>ls 
+AndroidManifest.xml  assets  bin  default.properties  gen  jni  res  src 
+</pre></div>
+
+
+<p>下面就可以生成相应的.h文件了：</p>
+<div class="highlight"><pre>~/workspace/android/NDK/hello-jni<span class="nv">$ </span>javah -classpath bin -d jni com.example.hellojni.HelloJni 
+</pre></div>
+
+
+<p>-classpath bin：表示类的路劲</p>
+<p>-d jni: 表示生成的头文件存放的目录</p>
+<p>com.example.hellojni.HelloJni 则是完整类名  </p>
+<p>执行这个命令的时候可能会出错,因为需要加载android.jar关联类库.所以需要加上这个参数  </p>
+<p>-bootclasspath .../android.jar</p>
+<p>这一步的成功要建立在已经在 bin/com/example/hellojni/  目录下生成了 HelloJni.class的基础之上。</p>
+<p>现在可以看到jni目录下多了个.h文件：</p>
+<div class="highlight"><pre>~/workspace/android/NDK/hello-jni<span class="nv">$ </span><span class="nb">cd </span>jni/ 
+~/workspace/android/NDK/hello-jni/jni<span class="nv">$ </span>ls 
+com_example_hellojni_HelloJni.h
+</pre></div>
+
+
+<p>我们来看看com_example_hellojni_HelloJni.h的内容：</p>
+<div class="highlight"><pre><span class="cm">/* DO NOT EDIT THIS FILE - it is machine generated */</span>
+<span class="cp">#include &lt;jni.h&gt;</span>
+<span class="cm">/* Header for class com_example_hellojni_HelloJni */</span>
+
+<span class="cp">#ifndef _Included_com_example_hellojni_HelloJni</span>
+<span class="cp">#define _Included_com_example_hellojni_HelloJni</span>
+<span class="cp">#ifdef __cplusplus</span>
+<span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="p">{</span>
+<span class="cp">#endif</span>
+<span class="cm">/*</span>
+<span class="cm"> * Class:     com_example_hellojni_HelloJni</span>
+<span class="cm"> * Method:    stringFromJNI</span>
+<span class="cm"> * Signature: ()Ljava/lang/String;</span>
+<span class="cm"> */</span>
+<span class="n">JNIEXPORT</span> <span class="n">jstring</span> <span class="n">JNICALL</span> <span class="n">Java_com_example_hellojni_HelloJni_stringFromJNI</span>
+  <span class="p">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="p">,</span> <span class="n">jobject</span><span class="p">);</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * Class:     com_example_hellojni_HelloJni</span>
+<span class="cm"> * Method:    unimplementedStringFromJNI</span>
+<span class="cm"> * Signature: ()Ljava/lang/String;</span>
+<span class="cm"> */</span>
+<span class="n">JNIEXPORT</span> <span class="n">jstring</span> <span class="n">JNICALL</span> <span class="nf">Java_com_example_hellojni_HelloJni_unimplementedStringFromJNI</span>
+  <span class="p">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="p">,</span> <span class="n">jobject</span><span class="p">);</span>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+<span class="cp">#endif</span>
+</pre></div>
+
+
+<p>上面代码中的JNIEXPORT 和 JNICALL 是jni的宏，在android的jni中不需要</p>
+<p>按照：java_pacakege_class_mathod 形式来命名。</p>
+<p>也就是说：</p>
+<p>Hello.java中 stringFromJNI() 方法对应于 C/C++中的Java_com_example_hellojni_HelloJni_stringFromJNI() 方法</p>
+<h4>2.2 编写Ｃ文件</h4>
+<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm"> * Copyright (C) 2009 The Android Open Source Project</span>
+<span class="cm"> *</span>
+<span class="cm"> * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="cm"> * you may not use this file except in compliance with the License.</span>
+<span class="cm"> * You may obtain a copy of the License at</span>
+<span class="cm"> *</span>
+<span class="cm"> *      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="cm"> *</span>
+<span class="cm"> * Unless required by applicable law or agreed to in writing, software</span>
+<span class="cm"> * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="cm"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm"> * See the License for the specific language governing permissions and</span>
+<span class="cm"> * limitations under the License.</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+<span class="cp">#include &lt;string.h&gt;</span>
+<span class="cp">#include &lt;jni.h&gt;</span>
+
+<span class="cm">/* This is a trivial JNI example where we use a native method</span>
+<span class="cm"> * to return a new VM String. See the corresponding Java source</span>
+<span class="cm"> * file located at:</span>
+<span class="cm"> *</span>
+<span class="cm"> *   apps/samples/hello-jni/project/src/com/example/HelloJni/HelloJni.java</span>
+<span class="cm"> */</span>
+<span class="n">jstring</span>
+<span class="nf">Java_com_example_hellojni_HelloJni_stringFromJNI</span><span class="p">(</span> <span class="n">JNIEnv</span><span class="o">*</span> <span class="n">env</span><span class="p">,</span>
+                                                  <span class="n">jobject</span> <span class="n">thiz</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="n">env</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">NewStringUTF</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="s">&quot;Hello Wolrd JNI&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>在这里我们先不对<code>Android.mk</code>文件做改动.android.mk在jni目录下，Android.mk 文件是Android 的 makefile文件，内容如下：</p>
+<div class="highlight"><pre><span class="c"># Copyright (C) 2009 The Android Open Source Project</span>
+<span class="c">#</span>
+<span class="c"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c"># you may not use this file except in compliance with the License.</span>
+<span class="c"># You may obtain a copy of the License at</span>
+<span class="c">#</span>
+<span class="c">#      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c">#</span>
+<span class="c"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c"># See the License for the specific language governing permissions and</span>
+<span class="c"># limitations under the License.</span>
+<span class="c">#</span>
+<span class="nv">LOCAL_PATH</span> <span class="o">:=</span> <span class="k">$(</span>call my-dir<span class="k">)</span>
+
+<span class="cp">include $(CLEAR_VARS)</span>
+
+<span class="nv">LOCAL_MODULE</span>    <span class="o">:=</span> hello-jni
+<span class="nv">LOCAL_SRC_FILES</span> <span class="o">:=</span> hello-jni.c
+
+<span class="cp">include $(BUILD_SHARED_LIBRARY)</span>
+</pre></div>
+
+
+<p>在eclipse下进行重新编译.将生成的so库打包在apk内运行,就可以看到结果了.</p>
+<h3>To Be Continued</h3>
+<p>我会继续对<code>Android.mk</code>文件做研究</p>
+            </div><!-- /.entry-content -->
+            <div class="comments">
+              <h3>Comments</h3>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_identifier = "Android_ndk_2.html";
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://commonq.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
+
+
+        </div><!-- /.eleven.columns -->
+        
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+        <li class="active"><a href="http://commonq.github.io/category/android.html">Android</a></li>
+        <li><a href="http://commonq.github.io/category/blog.html">Blog</a></li>
+        <li><a href="http://commonq.github.io/category/mood.html">Mood</a></li>
+  </ul>
+
+<h4>Categories</h4>
+<ul>
+		<li><a href="http://commonq.github.io/category/android.html">Android</a></li>
+		<li><a href="http://commonq.github.io/category/blog.html">Blog</a></li>
+		<li><a href="http://commonq.github.io/category/mood.html">Mood</a></li>
+</ul>
+
+
+<h4>Tags</h4>
+	<ul>
+	    <li class="tag-4"><a href="http://commonq.github.io/tag/mood.html">Mood</a></li>
+	    <li class="tag-1"><a href="http://commonq.github.io/tag/ndk.html">NDK</a></li>
+	    <li class="tag-2"><a href="http://commonq.github.io/tag/blog.html">Blog</a></li>
+	    <li class="tag-1"><a href="http://commonq.github.io/tag/android.html">Android</a></li>
+	    <li class="tag-4"><a href="http://commonq.github.io/tag/github.html">Github</a></li>
+	    <li class="tag-4"><a href="http://commonq.github.io/tag/linux.html">Linux</a></li>
+	    <li class="tag-4"><a href="http://commonq.github.io/tag/pelican.html">Pelican</a></li>
+</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul>
+    <li><a href="https://github.com/CommonQ">Github</a></li>
+    <li><a href="http://weibo.com/u/1239942131">新浪微博</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/CommonQ/commonq.github.io" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'commonq';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="http://commonq.github.io/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="http://commonq.github.io/theme/js/libs/gumby.min.js"></script>
+  <script src="http://commonq.github.io/theme/js/plugins.js"></script>
+</body>
+</html>
