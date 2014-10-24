@@ -48,7 +48,7 @@ prose:
       - name: "categories"
         field:
           element: "text"
-	  label: "categories"
+          label: "categories"
           value: ""
           placeholder: "Input your categories here"
           type: "text"
