@@ -8,7 +8,7 @@ blog:
     name:                 CommonQ Blog                   # 博客名称
     description:          Dreams Never die               # 博客描述
     title:                CommonQ blog                   # 网页标题
-    url:                  commonq.github.io              # 博客地址
+    url:                  test             # 博客地址
     duoshuo:              commonq                        # 多说ID
     tongji:               3Fbf08c3f6ece01de8c948821d75af154f            # 百度统计ID
     qiniu:                                                              # 七牛云地址
