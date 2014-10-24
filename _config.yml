@@ -5,19 +5,19 @@ paginate: 6
 paginate_path: page/:num
 
 blog:
-    name:                                                # 博客名称
-    description:                                         # 博客描述
-    title:                                               # 网页标题
-    url:                                                 # 博客地址
-    duoshuo:                                             # 多说ID
-    tongji:                                              # 百度统计ID
-    qiniu:                                               # 七牛云地址
+    name:                 CommonQ Blog                   # 博客名称
+    description:          Dreams Never die               # 博客描述
+    title:                CommonQ blog                   # 网页标题
+    url:                  commonq.github.io              # 博客地址
+    duoshuo:              commonq                        # 多说ID
+    tongji:               3Fbf08c3f6ece01de8c948821d75af154f            # 百度统计ID
+    qiniu:                                                              # 七牛云地址
 author:
-    name:                                                # 作者名称
-    email:                                               # 邮箱地址
-    weibo:                                               # 微博地址
-    github:                                              # GitHub地址
-    logo:                                                # logo地址
+    name:                  CommonQ                              # 作者名称
+    email:                 qukm90@gmail.com                       # 邮箱地址
+    weibo:                 http://weibo.com/u/1239942131                  # 微博地址
+    github:                https://github.com/CommonQ                   # GitHub地址
+    logo:                  /res/img/icon.png                            # logo地址
     douban:
-        name:                                            # 豆瓣地址名称
-        key:                                             # 豆瓣API Key
+        name:                        103870679                        # 豆瓣地址名称
+        key:                     020795eb159550230616c1c140bff069       # 豆瓣API Key
