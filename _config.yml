@@ -1,4 +1,4 @@
-markdown: rdiscout
+markdown: kramdown
 highlighter: pygments
 permalink: blog/:year/:month/:day/:title.html
 paginate: 6
@@ -23,39 +23,3 @@ author:
         key:                     020795eb159550230616c1c140bff069       # 豆瓣API Key
 		
 
-prose:
-  rooturl: "_posts"
-  # siteurl: "http://liyu1981.github.io/"
-  media: "images"
-  metadata:
-    _posts:
-      - name: "title"
-        field:
-          element: "text"
-          label: "Title"
-          value: ""
-          placeholder: "Input your title here"
-          type: "text"
-
-      - name: "description"
-        field:
-          element: "text"
-          label: "Description"
-          value: ""
-          placeholder: "Input your abstract here"
-          type: "text"
-
-      - name: "layout"
-        field:
-          element: "hidden"
-          value: "post"
-
-      - name: "published"
-        field:
-          element: "hidden"
-          value: "true"
-
-      - name: "category"
-        field:
-          element: "hidden"
-          value: "blog"
