@@ -3,7 +3,7 @@ highlighter: pygments
 permalink: blog/:year/:month/:day/:title.html
 paginate: 6
 paginate_path: page/:num
-baseurl: http://commonq.github.io
+baseurl:/
 
 blog:
     name:                        CommonQ Blog                        # 博客名称
