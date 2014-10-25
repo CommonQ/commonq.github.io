@@ -1,4 +1,4 @@
-markdown: rdiscount
+markdown: redcarpet
 highlighter: pygments
 permalink: blog/:year/:month/:day/:title.html
 paginate: 6
@@ -22,6 +22,9 @@ author:
     douban:
         name:                                103870679            # 豆瓣地址名称
         key:                                   020795eb159550230616c1c140bff069             # 豆瓣API Key
+redcarpet:
+  extensions: [fenced_code_blocks]
+  render_options:
 prose:
   rooturl: "_posts"
   siteurl: "http://commonq.github.io/"
