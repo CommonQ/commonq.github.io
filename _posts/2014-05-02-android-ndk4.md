@@ -26,29 +26,29 @@ libs/armeabi
 这里要注意，参数只写xxx就可以了，不需要写libxxx，也不需要写libxxx.so。
 
 还有一点要说明，System.loadLibrary这个函数会在如下路径搜索libxxx.so文件：
-``` 
-/system/lib
-/data/data/you apk package/lib
-``` 
+
+          /system/lib
+          /data/data/you apk package/lib
+
 但，如果libxxx.so还依赖其它.so文件，比如libyyy.so，则System.loadLibrary**只会
 在/system/lib目录下去找，如果没找到，它不会自动到/data/data/you apk package/lib
 下去找**，这个时候就会报动态库没找到的错；
 解决方法是在load libxxx.so之前，先load libyyy.so，如下：  
-```
-System.loadLibrary("yyy");  
-System.loadLibrary("xxx");  
-```
+
+          System.loadLibrary("yyy");  
+          System.loadLibrary("xxx");  
+
 
 ###声明一个预编译库的模块
 
 对于Android编译工具而言，每个预编译库必须声明为一个独立的模块。这里举一个例子，假设 libfoo.so 文件与 Android.mk 位于同一个目录：
-```
-LOCAL_PATH := $(call my-dir)  
-include $(CLEAR_VARS)  
-LOCAL_MODULE := foo-prebuilt  
-LOCAL_SRC_FILES := libfoo.so  
-include $(PREBUILT_SHARED_LIBRARY)  
-```
+
+          LOCAL_PATH := $(call my-dir)  
+          include $(CLEAR_VARS)  
+          LOCAL_MODULE := foo-prebuilt  
+          LOCAL_SRC_FILES := libfoo.so  
+          include $(PREBUILT_SHARED_LIBRARY)  
+
 按以下步骤声明这样一个模块：
 
 1. 给该模块取一个名字（这里是 foo-prebuilt）。这个名字不需要与预编译库自身的名字相同。
@@ -58,10 +58,10 @@ include $(PREBUILT_SHARED_LIBRARY)
 
 ###在其他模块中引用这个预编译库
 在依赖该预编译库的模块对应的Android.mk中，将预编译库的名字（前面取的）加入到 LOCAL_STATIC_LIBRARIES 或 LOCAL_SHARED_LIBRARIES 声明中。例如，一个使用上面libfoo.so的简单例子如下：
-```
-include $(CLEAR_VARS)  
-LOCAL_MODULE := foo-user  
-LOCAL_SRC_FILES := foo-user.c  
-LOCAL_SHARED_LIBRARIES := foo-prebuilt  
-include $(BUILD_SHARED_LIBRARY)  
-```
+
+          include $(CLEAR_VARS)  
+          LOCAL_MODULE := foo-user  
+          LOCAL_SRC_FILES := foo-user.c  
+          LOCAL_SHARED_LIBRARIES := foo-prebuilt  
+          include $(BUILD_SHARED_LIBRARY)  
+
