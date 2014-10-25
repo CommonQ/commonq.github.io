@@ -50,14 +50,14 @@ typedef jint jsize;
 在java中，使用的字符串String对象是Unicode码，即每个字符不论是中文还是英文或是符号，一个字符总是占用两个字节。
 在c/c++本地代码中创建java的String对象
 .java通过JNI接口可以将java的字符串转换到c/c++中的宽字符串(wchar_t *),或是传回一个UTF-8的字符串（char *）到c/c++。反过来，c/c++可以通过一个宽字符串，或是一个UTF-8编码的字符串来创建一个java端的String对象。
-```java
-GetStringChars/GetStringUTFChars
-```
+
+	GetStringChars/GetStringUTFChars
+
 .这两个函数用来取得与某个jstring对象相关的java字符串。分别可以取得UTF-16编码的宽字符串（jchar*）跟UTF-8编码的字符串（char*）。
-```java
-Const jchar* GetStringChars(jstring str, jboolean* copied)
-Const char* GetStringUTFChars(jstring str, jboolean* copied)
-```
+
+	Const jchar* GetStringChars(jstring str, jboolean* copied)
+	Const char* GetStringUTFChars(jstring str, jboolean* copied)
+
 第一个参数传入一个指向java中的String对象的jstring变量  
 第二个参数传入的是一个jboolean的指针。  
 这两个函数分别都会有两个不同的动作：  
@@ -69,10 +69,10 @@ Const char* GetStringUTFChars(jstring str, jboolean* copied)
 如果传入的这个jboolean指针不是null,则他会给该指针指向的内存传入JNI_TRUE或JNI_FALSE标示是否进行了拷贝。
 传入null标示不关心是否拷贝字符串，它就不会给jboolean*指向的内存赋值。
 使用这两个函数取得的字符串，在不使用的时候，要使用`ReleaseStringChars/ReleaseStringUTFChars`来释放拷贝的内存，或是释放对java的String对象的引用。
-```java
-ReleaseStringChars(jstring jstr, const jchar* str);
-ReleaseStringUTFChars(jstring jstr, const char* str);
-```
+
+	ReleaseStringChars(jstring jstr, const jchar* str);
+	ReleaseStringUTFChars(jstring jstr, const char* str);
+
 第一个参数指定一个jstring变量，即是要释放的本地字符串的来源。  
 第二个参数就是要释放的本地字符串  
 
@@ -80,62 +80,62 @@ ReleaseStringUTFChars(jstring jstr, const char* str);
 ###访问类对象的属性
 
 env 为 JNIEnv,obj的类型为jobject
-```java
 
-JAVA_FieldAccessTest_accessField(JNIEnv *env,jobject obj){
+
+	JAVA_FieldAccessTest_accessField(JNIEnv *env,jobject obj){
      
-     jfieldID fid;
-     jclass cls = (*env)->GetObjectClass(env, obj);
-     //类FieldAccessTest中有个String类型的属性s
+     	jfieldID fid;
+     	jclass cls = (*env)->GetObjectClass(env, obj);
+     	//类FieldAccessTest中有个String类型的属性s
      
-     //获取要访问的属性的id
-     fid = (*env)->GetFieldID(evn,cls,"s","Ljava/lang/String;");
-    //读取属性值
-    jstring jstr = (*env)->GetObjectField(env,obj,fid);
-    char* str  = (*evn)->GetStringUTFChars(env,jstr,NULL);
+     	//获取要访问的属性的id
+     	fid = (*env)->GetFieldID(evn,cls,"s","Ljava/lang/String;");
+    	//读取属性值
+    	jstring jstr = (*env)->GetObjectField(env,obj,fid);
+    	char* str  = (*evn)->GetStringUTFChars(env,jstr,NULL);
    
-    //释放资源
-   （*env)->ReleaseStringUTFChars(env,jstr,str);
+	 //释放资源
+   	（*env)->ReleaseStringUTFChars(env,jstr,str);
 
-    //现在反过来，改变调用该本地方法的java对象的属性值
-    jstr = (*env)->NewStringUTF(env,"88888");
-    (*env)->SetObjectField(env,obj,fid,jstr);
+    	//现在反过来，改变调用该本地方法的java对象的属性值
+    	jstr = (*env)->NewStringUTF(env,"88888");
+	 (*env)->SetObjectField(env,obj,fid,jstr);
 
-}
-```
+	}
+
 
 总结：
-```java
-1. jfieldID fid = (*env)->GetFieldID(env,对象所属的类的jclass,
-            属性名,
-            属性对应的属性描述符号);
-2. (*env)->GetObjectField(env,对象,属性id);
-```
+
+	1. jfieldID fid = (*env)->GetFieldID(env,对象所属的类的jclass,
+        	    属性名,
+            	属性对应的属性描述符号);
+	2. (*env)->GetObjectField(env,对象,属性id);
+
 
 ####访问静态属性：
   假如有个类如下：
-```java
- class StaticFielcTest {
-       private static int si;
-       private native void accessField();
- }
- ```
+
+ 	class StaticFielcTest {
+       	private static int si;
+       	private native void accessField();
+ 	}
+ 
 
 那么实现为:
-```java
 
-  JNIEXPORT void JNICALL
-   Java_StaticFieldTest_accessField(JNIEnv *env, jobject obj)
-   {
 
-       jfieldID fid;   /* store the field ID */
-       jint si;
-       jclass cls = (*env)->GetObjectClass(env, obj);   //获取类class
-       fid = (*env)->GetStaticFieldID(env, cls, "si", "I");  //获取静态属性id
-       si = (*env)->GetStaticIntField(env, cls, fid);   //读去属性的值
-      (*env)->SetStaticIntField(env, cls, fid, 200);  //设置静态属性的值
-   }
-   ```
+  	JNIEXPORT void JNICALL
+   	Java_StaticFieldTest_accessField(JNIEnv *env, jobject obj)
+   	{
+	
+       	jfieldID fid;   /* store the field ID */
+       	jint si;
+       	jclass cls = (*env)->GetObjectClass(env, obj);   //获取类class
+       	fid = (*env)->GetStaticFieldID(env, cls, "si", "I");  //获取静态属性id
+       	si = (*env)->GetStaticIntField(env, cls, fid);   //读去属性的值
+      	(*env)->SetStaticIntField(env, cls, fid, 200);  //设置静态属性的值
+   	}
+   
    
    
    
@@ -143,34 +143,34 @@ JAVA_FieldAccessTest_accessField(JNIEnv *env,jobject obj){
    
 ###访问实例方法
 假如有个这样的类：
-```java
- class MethodCall {
-       private native void nativeMethod();
-       private void callback() {
-           System.out.println("In Java CallBack");
-       }
-       public static void main(String args[]) {
-           MethodCall c = new MethodCall();
-           c.nativeMethod();
-} static {
-           System.loadLibrary("InstanceMethodCall");
-       }
-}
-```
-jni实现:
-```java
-JNIEXPORT void JNICALL
-   Java_MethodCall_nativeMethod(JNIEnv *env, jobject obj)
-   {
-       //1.拿到class
-       jclass cls = (*env)->GetObjectClass(env, obj);                         
-       //2.拿到方法id
-       jmethodID mid = (*env)->GetMethodID(env, cls, "callback", "()V");           
-        //3.根据obj,和方法id 调用方法
-      (*env)->CallVoidMethod(env, obj, mid);   
-   }
 
-```
+ 	class MethodCall {
+       	private native void nativeMethod();
+       	private void callback() {
+           	System.out.println("In Java CallBack");
+       	}
+       	public static void main(String args[]) {
+           	MethodCall c = new MethodCall();
+           	c.nativeMethod();
+	} static {
+           	System.loadLibrary("InstanceMethodCall");
+       	}
+	}
+
+jni实现:
+
+	JNIEXPORT void JNICALL
+   	Java_MethodCall_nativeMethod(JNIEnv *env, jobject obj)
+   	{
+       	//1.拿到class
+       	jclass cls = (*env)->GetObjectClass(env, obj);                         
+       	//2.拿到方法id
+       	jmethodID mid = (*env)->GetMethodID(env, cls, "callback", "()V");           
+        	//3.根据obj,和方法id 调用方法
+      	(*env)->CallVoidMethod(env, obj, mid);   
+   	}
+
+
 
 根据方法的返回值来决定调用哪个方法：
     Call<Type>Method
@@ -179,21 +179,21 @@ JNIEXPORT void JNICALL
 
 最后那个参数 "()V"   是方法描述符:
 
-```
-(I)V   带一个int 类型的参数，返回值类型为void
-()D     没有参数，返回double   //注意！！没有参数并不是  (V)D
-```
+
+>	(I)V   带一个int 类型的参数，返回值类型为void
+>	()D     没有参数，返回double   //注意！！没有参数并不是  (V)D
+
 方法public static void main(String[] args) 对应的方法描的符为:
-```
-  ([Ljava/lang/String;)V
-```
+
+  	([Ljava/lang/String;)V
+
 
 
 ####访问静态方法
-```
-jclass cls = (*env)->GetObjectClass(env, obj);
-jmethodID mid =
-           (*env)->GetStaticMethodID(env, cls, "callback", "()V");
-(*env)->CallStaticVoidMethod(env, cls, mid);    //注意，这里跟访问实例方法的区别是 第二个参数不是obj,而是cls
-```   
+
+	jclass cls = (*env)->GetObjectClass(env, obj);
+	jmethodID mid =
+        	   (*env)->GetStaticMethodID(env, cls, "callback", "()V");
+	(*env)->CallStaticVoidMethod(env, cls, mid);    //注意，这里跟访问实例方法的区别是 第二个参数不是obj,而是cls
+ 
    
