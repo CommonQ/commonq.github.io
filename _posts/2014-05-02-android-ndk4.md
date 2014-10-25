@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: Android ndk4
+title: Android JNI和NDK学习(4)--编译与预编译
 categories: Android
 ---
 
