@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: Android ndk3
+title: Android JNI和NDK学习(3)--Android.mk分析
 categories: Android
 ---
 
