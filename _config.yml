@@ -23,7 +23,7 @@ author:
         key:                                   020795eb159550230616c1c140bff069             # 豆瓣API Key
 prose:
   rooturl: "_posts"
-  siteurl: "http://http://commonq.github.io//"
+  siteurl: "http://commonq.github.io/"
   media: "images"
   metadata:
     _posts:
