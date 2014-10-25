@@ -3,6 +3,7 @@ highlighter: pygments
 permalink: blog/:year/:month/:day/:title.html
 paginate: 6
 paginate_path: page/:num
+baseurl: http://commonq.github.io
 
 blog:
     name:                        CommonQ Blog                        # 博客名称
@@ -22,7 +23,7 @@ author:
         name:                                103870679            # 豆瓣地址名称
         key:                                   020795eb159550230616c1c140bff069             # 豆瓣API Key
 prose:
-  #rooturl: "_posts"
+  rooturl: "_posts"
   siteurl: "http://commonq.github.io/"
   media: "images"
   metadata:
