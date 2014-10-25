@@ -40,8 +40,8 @@ void void N/A
 为了使用方便，特提供以下定义。
 
 ```
-#define JNI_FALSE 0
-#define JNI_TRUE 1
+ \#define JNI_FALSE 0
+ \#define JNI_TRUE 1
 ```
 
 jsize 整数类型用于描述主要指数和大小：
