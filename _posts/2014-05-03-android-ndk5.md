@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: Android ndk5
+title: Android JNI和NDK学习(5)--JNI分析API
 categories: Android
 ---
 
