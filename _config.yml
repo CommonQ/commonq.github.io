@@ -28,13 +28,7 @@ prose:
   media: "images"
   metadata:
     _posts:
-      - name: "title"
-        field:
-          element: "text"
-          label: "Title"
-          value: ""
-          placeholder: "Input your title here"
-          type: "text"
+      
 
       - name: "layout"
         field:
