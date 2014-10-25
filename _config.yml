@@ -47,3 +47,10 @@ prose:
           value: ""
           placeholder: "Input your categories here"
           type: "text"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Title"
+          value: ""
+          placeholder: "Input your title here"
+          type: "text"
