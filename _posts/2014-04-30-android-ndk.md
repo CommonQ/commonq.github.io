@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: Android Ndk
+title: Android JNI和NDK学习(1)--搭建开发环境
 categories: Android
 ---
 
