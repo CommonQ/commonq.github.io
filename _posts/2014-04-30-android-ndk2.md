@@ -9,87 +9,87 @@ categories: Android
 ####**1. 首先是Java代码的编写**  
 Android NDK Sample里面的*Hello-jni*工程.  
 *Hellojni.java*
-```java
-
-/*
- * Copyright (C) 2009 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package com.example.hellojni;
-
-import android.app.Activity;
-import android.widget.TextView;
-import android.os.Bundle;
 
 
-public class HelloJni extends Activity
-{
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+	/*
+	 * Copyright (C) 2009 The Android Open Source Project
+	 *
+ 	* Licensed under the Apache License, Version 2.0 (the "License");
+ 	* you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 *      http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+ 	*/
+	package com.example.hellojni;
+
+	import android.app.Activity;
+	import android.widget.TextView;
+	import android.os.Bundle;
+
+
+	public class HelloJni extends Activity
+	{
+	  /** Called when the activity is first created. */
+	  @Override
+	  public void onCreate(Bundle savedInstanceState)
+	  {
         super.onCreate(savedInstanceState);
+	
+	     /* Create a TextView and set its content.
+	      * the text is retrieved by calling a native
+	      * function.
+	      */
+    	    TextView  tv = new TextView(this);
+    	   tv.setText( stringFromJNI() );
+    	   setContentView(tv);
+	  }
 
-        /* Create a TextView and set its content.
-         * the text is retrieved by calling a native
-         * function.
-         */
-        TextView  tv = new TextView(this);
-        tv.setText( stringFromJNI() );
-        setContentView(tv);
-    }
+	 /* A native method that is implemented by the
+	  * 'hello-jni' native library, which is packaged
+	  * with this application.
+	  */
+	 public native String  stringFromJNI();
+	
+	 /* This is another native method declaration that is *not*
+	  * implemented by 'hello-jni'. This is simply to show that
+	  * you can declare as many native methods in your Java code
+    	 * as you want, their implementation is searched in the
+	  * currently loaded native libraries only the first time
+    	 * you call them.
+    	 *
+    	 * Trying to call this function will result in a
+    	 * java.lang.UnsatisfiedLinkError exception !
+    	 */
+    	public native String  unimplementedStringFromJNI();
+	
+    	/* this is used to load the 'hello-jni' library on application
+    	 * startup. The library has already been unpacked into
+    	 * /data/data/com.example.hellojni/lib/libhello-jni.so at
+    	 * installation time by the package manager.
+    	 */
+    	static {
+    	    System.loadLibrary("hello-jni");
+	 }
+	}
 
-    /* A native method that is implemented by the
-     * 'hello-jni' native library, which is packaged
-     * with this application.
-     */
-    public native String  stringFromJNI();
 
-    /* This is another native method declaration that is *not*
-     * implemented by 'hello-jni'. This is simply to show that
-     * you can declare as many native methods in your Java code
-     * as you want, their implementation is searched in the
-     * currently loaded native libraries only the first time
-     * you call them.
-     *
-     * Trying to call this function will result in a
-     * java.lang.UnsatisfiedLinkError exception !
-     */
-    public native String  unimplementedStringFromJNI();
-
-    /* this is used to load the 'hello-jni' library on application
-     * startup. The library has already been unpacked into
-     * /data/data/com.example.hellojni/lib/libhello-jni.so at
-     * installation time by the package manager.
-     */
-    static {
-        System.loadLibrary("hello-jni");
-    }
-}
-
-```
 这段代码很简单，注释也很清晰，这里只提两点：:
-```java
-static{ 
-System.loadLibrary("hello-jni"); 
-}
-```
+
+	static{ 
+	System.loadLibrary("hello-jni"); 
+	}
+
 表明程序开始运行的时候会加载hello-jni, static区声明的代码会先于onCreate方法执行,因为这是属于类的静态方法。如果你的程序中有多个类，而且如果HelloJni这个类不是你应用程序的入口，那么hello-jni（完整的名字是libhello-jni.so）这个库会在第一次使用HelloJni这个类的时候加载。
-```java
-public native String stringFromJNI(); 
-public native String unimplementedStringFromJNI();
-```
+
+	public native String stringFromJNI(); 
+	public native String unimplementedStringFromJNI();
+
 可以看到这两个方法的声明中有 native 关键字， 这个关键字表示这两个方法是本地方法，也就是说这两个方法是通过本地代码（C/C++）实现的，在java代码中仅仅是声明。
 
 用eclipse编译该工程，生成相应的.class文件，这步必须在下一步之前完成，因为生成.h文件需要用到相应的.class文件。
@@ -100,31 +100,31 @@ public native String unimplementedStringFromJNI();
 ####2.1 生成相应.h文件：
 
 就拿我这的环境来说，首先在终端下进入刚刚建立的HelloJni工程的目录：
-```sh
-~$ cd workspace/android/NDK/hello-jni/
-```
+
+	~$ cd workspace/android/NDK/hello-jni/
+
 
 ls查看工程文件
-```sh
-~/workspace/android/NDK/hello-jni$ ls 
-AndroidManifest.xml  assets  bin  default.properties  gen  res  src 
-```
+
+	~/workspace/android/NDK/hello-jni$ ls 
+	AndroidManifest.xml  assets  bin  default.properties  gen  res  src 
+
 
 可以看到目前仅仅有几个标准的android应用程序的文件（夹）。
 
 首先我们在工程目录下建立一个jni文件夹：
 
-```sh
-~/workspace/android/NDK/hello-jni$ mkdir jni 
-~/workspace/android/NDK/hello-jni$ ls 
-AndroidManifest.xml  assets  bin  default.properties  gen  jni  res  src 
-```
+
+	~/workspace/android/NDK/hello-jni$ mkdir jni 
+	~/workspace/android/NDK/hello-jni$ ls 
+	AndroidManifest.xml  assets  bin  default.properties  gen  jni  res  src 
+
 
 下面就可以生成相应的.h文件了：
 
-```sh
-~/workspace/android/NDK/hello-jni$ javah -classpath bin -d jni com.example.hellojni.HelloJni 
-```
+
+	~/workspace/android/NDK/hello-jni$ javah -classpath bin -d jni com.example.hellojni.HelloJni 
+
 -classpath bin：表示类的路劲
 
 -d jni: 表示生成的头文件存放的目录
@@ -138,45 +138,45 @@ com.example.hellojni.HelloJni 则是完整类名
 这一步的成功要建立在已经在 bin/com/example/hellojni/  目录下生成了 HelloJni.class的基础之上。
 
 现在可以看到jni目录下多了个.h文件：
-```sh
-~/workspace/android/NDK/hello-jni$ cd jni/ 
-~/workspace/android/NDK/hello-jni/jni$ ls 
-com_example_hellojni_HelloJni.h
-```
+
+	~/workspace/android/NDK/hello-jni$ cd jni/ 
+	~/workspace/android/NDK/hello-jni/jni$ ls 
+	com_example_hellojni_HelloJni.h
+
 
 我们来看看com_example_hellojni_HelloJni.h的内容：
 
-```c
-/* DO NOT EDIT THIS FILE - it is machine generated */
-#include <jni.h>
-/* Header for class com_example_hellojni_HelloJni */
 
-#ifndef _Included_com_example_hellojni_HelloJni
-#define _Included_com_example_hellojni_HelloJni
-#ifdef __cplusplus
-extern "C" {
-#endif
-/*
- * Class:     com_example_hellojni_HelloJni
- * Method:    stringFromJNI
- * Signature: ()Ljava/lang/String;
- */
-JNIEXPORT jstring JNICALL Java_com_example_hellojni_HelloJni_stringFromJNI
-  (JNIEnv *, jobject);
+	/* DO NOT EDIT THIS FILE - it is machine generated */
+	#include <jni.h>
+	/* Header for class com_example_hellojni_HelloJni */
+	
+	#ifndef _Included_com_example_hellojni_HelloJni
+	#define _Included_com_example_hellojni_HelloJni
+	#ifdef __cplusplus
+	extern "C" {
+	#endif
+	/*
+	 * Class:     com_example_hellojni_HelloJni
+	 * Method:    stringFromJNI
+ 	* Signature: ()Ljava/lang/String;
+ 	*/
+	JNIEXPORT jstring JNICALL Java_com_example_hellojni_HelloJni_stringFromJNI
+	  (JNIEnv *, jobject);
+	
+	/*
+	 * Class:     com_example_hellojni_HelloJni
+	 * Method:    unimplementedStringFromJNI
+	* Signature: ()Ljava/lang/String;
+ 	*/
+	JNIEXPORT jstring JNICALL Java_com_example_hellojni_HelloJni_unimplementedStringFromJNI
+	  (JNIEnv *, jobject);
+	
+	#ifdef __cplusplus
+	}
+	#endif
+	#endif
 
-/*
- * Class:     com_example_hellojni_HelloJni
- * Method:    unimplementedStringFromJNI
- * Signature: ()Ljava/lang/String;
- */
-JNIEXPORT jstring JNICALL Java_com_example_hellojni_HelloJni_unimplementedStringFromJNI
-  (JNIEnv *, jobject);
-
-#ifdef __cplusplus
-}
-#endif
-#endif
-```
 上面代码中的JNIEXPORT 和 JNICALL 是jni的宏，在android的jni中不需要
 
 按照：java_pacakege_class_mathod 形式来命名。
@@ -187,68 +187,68 @@ Hello.java中 stringFromJNI() 方法对应于 C/C++中的Java_com_example_helloj
 
 ####2.2 编写Ｃ文件
 
-```c
 
-/*
- * Copyright (C) 2009 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-#include <string.h>
-#include <jni.h>
+	
+	/*
+	 * Copyright (C) 2009 The Android Open Source Project
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+ 	* You may obtain a copy of the License at
+	 *
+	 *      http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 *
+	 */
+	#include <string.h>
+	#include <jni.h>
+	
+	/* This is a trivial JNI example where we use a native method
+ 	* to return a new VM String. See the corresponding Java source
+ 	* file located at:
+	 *
+ 	*   apps/samples/hello-jni/project/src/com/example/HelloJni/HelloJni.java
+	 */
+	jstring
+	Java_com_example_hellojni_HelloJni_stringFromJNI( JNIEnv* env,
+	                                                  jobject thiz )
+	{
+	    return (*env)->NewStringUTF(env, "Hello Wolrd JNI");
+	}
 
-/* This is a trivial JNI example where we use a native method
- * to return a new VM String. See the corresponding Java source
- * file located at:
- *
- *   apps/samples/hello-jni/project/src/com/example/HelloJni/HelloJni.java
- */
-jstring
-Java_com_example_hellojni_HelloJni_stringFromJNI( JNIEnv* env,
-                                                  jobject thiz )
-{
-    return (*env)->NewStringUTF(env, "Hello Wolrd JNI");
-}
-```
 在这里我们先不对`Android.mk`文件做改动.android.mk在jni目录下，Android.mk 文件是Android 的 makefile文件，内容如下：
 
-```makefile
 
-# Copyright (C) 2009 The Android Open Source Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-LOCAL_PATH := $(call my-dir)
 
-include $(CLEAR_VARS)
+	# Copyright (C) 2009 The Android Open Source Project
+	#
+	# Licensed under the Apache License, Version 2.0 (the "License");
+	# you may not use this file except in compliance with the License.
+	# You may obtain a copy of the License at
+	#
+	#      http://www.apache.org/licenses/LICENSE-2.0
+	#
+	# Unless required by applicable law or agreed to in writing, software
+	# distributed under the License is distributed on an "AS IS" BASIS,
+	# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	# See the License for the specific language governing permissions and
+	# limitations under the License.
+	#
+	LOCAL_PATH := $(call my-dir)
+	
+	include $(CLEAR_VARS)
+	
+	LOCAL_MODULE    := hello-jni
+	LOCAL_SRC_FILES := hello-jni.c
+	
+	include $(BUILD_SHARED_LIBRARY)
+	
 
-LOCAL_MODULE    := hello-jni
-LOCAL_SRC_FILES := hello-jni.c
-
-include $(BUILD_SHARED_LIBRARY)
-
-```
 
 在eclipse下进行重新编译.将生成的so库打包在apk内运行,就可以看到结果了.
 
