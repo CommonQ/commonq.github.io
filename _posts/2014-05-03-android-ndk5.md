@@ -23,26 +23,25 @@ Slug: Android_ndk_5
 像booleans、integers、floats等从Java程序中传到本地方法中的原始类型可以直接使用，下面是java中的原始类型和本地方法中的类型的对应：
 
 Java 类型本地类型说明
-```
-boolean jboolean 无符号，8 位  
-byte jbyte 无符号，8 位  
-char jchar 无符号，16 位    
-short jshort 有符号，16 位  
-int jint 有符号，32 位  
-long jlong 有符号，64 位  
-float jfloat 32 位  
-double jdouble 64 位  
-void void N/A  
-```
+
+	boolean jboolean 无符号，8 位  
+	byte jbyte 无符号，8 位  
+	char jchar 无符号，16 位    
+	short jshort 有符号，16 位  
+	int jint 有符号，32 位  
+	long jlong 有符号，64 位  
+	float jfloat 32 位  
+	double jdouble 64 位  
+	void void N/A  
+
 
 也就是说如果我在方法中传进去了一个boolean的参数的话，那么我在本地方法中就有jboolean类型与之对应。同理，如果在本地方法中return一个jint的话，那么在java中就返回一个int类型。
 
 为了使用方便，特提供以下定义。
 
-```
- \#define JNI_FALSE 0
- \#define JNI_TRUE 1
-```
+	#define JNI_FALSE 0
+	#define JNI_TRUE 1
+
 
 jsize 整数类型用于描述主要指数和大小：
 typedef jint jsize;
