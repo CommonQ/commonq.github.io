@@ -18,7 +18,7 @@ author:
     email:                               qukm90@gmail.com                   # 邮箱地址
     weibo:                                    http://weibo.com/u/1239942131               # 微博地址
     github:                                    https://github.com/CommonQ            # GitHub地址
-    logo:                                      /res/img/icon.png             # logo地址
+    logo:                                      /res/img/icon.jpg             # logo地址
     douban:
         name:                                103870679            # 豆瓣地址名称
         key:                                   020795eb159550230616c1c140bff069             # 豆瓣API Key
