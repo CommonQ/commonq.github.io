@@ -28,7 +28,13 @@ prose:
   media: "images"
   metadata:
     _posts:
-      
+      - name: "title"
+        field:
+          element: "text"
+          label: "Title"
+          value: ""
+          placeholder: "Input your title here"
+          type: "text"
 
       - name: "layout"
         field:
@@ -46,11 +52,4 @@ prose:
           label: "categories"
           value: ""
           placeholder: "Input your categories here"
-          type: "text"
-      - name: "title"
-        field:
-          element: "text"
-          label: "Title"
-          value: ""
-          placeholder: "Input your title here"
           type: "text"
