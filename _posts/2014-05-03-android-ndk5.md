@@ -38,10 +38,12 @@ void void N/A
 也就是说如果我在方法中传进去了一个boolean的参数的话，那么我在本地方法中就有jboolean类型与之对应。同理，如果在本地方法中return一个jint的话，那么在java中就返回一个int类型。
 
 为了使用方便，特提供以下定义。
+
 ```
 #define JNI_FALSE 0
 #define JNI_TRUE 1
 ```
+
 jsize 整数类型用于描述主要指数和大小：
 typedef jint jsize;
 
