@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: Android ndk2
+title: Android JNI和NDK学习(2)--编程入门
 categories: Android
 ---
 
