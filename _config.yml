@@ -1,11 +1,18 @@
-markdown: kramdown
-kramdown:
-  input: GFM
 highlighter: pygments
+markdown: redcarpet
+redcarpet:
+  extensions:
+    - fenced_code_blocks
+    - no_intra_emphasis
+    - strikethrough
+    - autolink
+    - tables
+
+
+
 permalink: blog/:year/:month/:day/:title.html
 paginate: 6
 paginate_path: page/:num
-pygments:     true
 baseurl:
 
 blog:
