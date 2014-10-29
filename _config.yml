@@ -1,8 +1,11 @@
-markdown: kramdown
-kramdown:
-  input: GFM
- 
-highlighter: pygments
+lsi:         false
+pygments:    false
+markdown:    redcarpet
+
+redcarpet:
+  extensions: [fenced_code_blocks]
+  render_options:
+
 permalink: blog/:year/:month/:day/:title.html
 paginate: 6
 paginate_path: page/:num
