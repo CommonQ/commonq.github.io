@@ -62,6 +62,13 @@ blog/
 └── publishconf.py
 ```
 
+
+
+```python
+def yourfunction():
+     print "Hello World!"
+```
+
 ####写一篇文章
 在 `content `目录新建一个 `test.md`文件, 填入一下内容:
 ```md
