@@ -1,9 +1,6 @@
 pygments:    false
-markdown:    redcarpet
+markdown: kramdown
 
-redcarpet:
-  extensions: [fenced_code_blocks]
-  render_options:
 
 permalink: blog/:year/:month/:day/:title.html
 paginate: 6
