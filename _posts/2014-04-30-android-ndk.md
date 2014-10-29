@@ -39,6 +39,7 @@ ndk-bulid
 ```
 
 弹出如下的错误，而不是说`ndk-build not found`，就说明ndk环境已经安装成功了。
+
 ###Windows下NDK环境搭建
 在NDKr7开始，google的windos版NDK提供了一个ndk-build.cmd的脚本，这样就可以直接利用这个脚本编译，而不需要cygwin了。前面章节我介绍了NDK利用cygwin来进行配置（《NDK利用cygwin环境配置》），现在开始我们要与时俱进了,其实不同之处就是设置c/c++编译器的不同了。  
 1. 选择你的android工程，右击选择Properties，弹出配置界面，之后再点击Builders，弹出项目的编译编译工具        列表，之后点击new，新添加一个编译器，点击之后出现添加界面，选择Program，点击ok。
