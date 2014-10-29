@@ -240,3 +240,23 @@ git push -u origin master
 这样就大功告成了！
 
 
+
+
+```java
+
+public static void main(String[] args){
+    test a;
+    #this is a test
+
+}
+```
+
+
+{% highlight java %}
+public class HelloWorld {
+    public static void main(String args[]) {
+      System.out.println("Hello World!");
+    }
+}
+{% endhighlight %}
+
