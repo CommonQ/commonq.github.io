@@ -242,33 +242,7 @@ git push -u origin master
 
 
 
-```java
 
-public static void main(String[] args){
-    test a;
-    #this is a test
-
-}
-```
-
-
-```java
-
-public static void main(String[] args){
-    test a;
-    #this is a test
-    System.out.println("Hello World!");
-}
-```
-
-```java
-
-public static void main(String[] args){
-    test a;
-    #this is a test
-    System.out.println("Hello World!");
-}
-```
 
 
 
