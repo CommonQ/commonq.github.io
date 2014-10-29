@@ -47,13 +47,19 @@ ndk-bulid
 3. 设置Location为<NDK安装目录>\ndk-build.cmd
 4. 设置Working Directory为${workspace_loc:/项目名称}  
 截图如下：  
+
 ![ndk_configure.jpg](/images/ndk_configure.jpg)
+
 5. 切换到Refersh选项卡，给Refersh resources upon completion打上勾，选择The entire resource选项。  
 截图如下：  
+
 ![ndk_configure2.jpg](/images/ndk_configure2.jpg)
+
 6. 切换到Build Options选项卡，勾选上最后三项。再点击Specify Resource按钮，选择你的android工程的jni目录。  
 截图如下：  
+
 ![ndk_configure3.jpg](/images/ndk_configure3.jpg)
+
 7. 在编译工具列表，我们最好将我们新建的编译器置顶。选中点击Up按钮置顶。避免重复编译两次
 
 
