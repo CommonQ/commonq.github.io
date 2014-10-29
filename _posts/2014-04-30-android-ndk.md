@@ -47,3 +47,12 @@ ndk-bulid
 ![ndk_configure3.jpg](/images/ndk_configure3.jpg)
 7. 在编译工具列表，我们最好将我们新建的编译器置顶。选中点击Up按钮置顶。避免重复编译两次
 
+
+```java
+public static void main(String[] args){
+    System.out.println("hello");
+
+}
+
+```
+
