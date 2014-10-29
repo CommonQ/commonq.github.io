@@ -51,6 +51,7 @@ pelican-quickstart
 ```
 在回答一系列问题过后你的博客就建成的, 主要生成下列文件:
 生成的目录结构:
+
 ```sh
 blog/
 ├── content
@@ -64,10 +65,6 @@ blog/
 
 
 
-```python
-def yourfunction():
-     print "Hello World!"
-```
 
 ####写一篇文章
 在 `content `目录新建一个 `test.md`文件, 填入一下内容:
