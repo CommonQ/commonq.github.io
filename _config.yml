@@ -1,4 +1,4 @@
-pygments:    false
+pygments: true
 markdown: kramdown
 
 
