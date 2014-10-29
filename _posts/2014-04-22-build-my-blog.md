@@ -261,6 +261,14 @@ public static void main(String[] args){
 }
 ```
 
+```java
+
+public static void main(String[] args){
+    test a;
+    #this is a test
+    System.out.println("Hello World!");
+}
+```
 
 
 
