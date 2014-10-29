@@ -5,11 +5,6 @@ title: Android JNI和NDK学习(5)--JNI分析API
 categories: Android
 ---
 
-Date: 2014-05-01
-Title: Android JNI和NDK学习(5)--JNI分析API
-Category: Android
-Tags: Android, NDK
-Slug: Android_ndk_5
 
 ###Java类型和本地类型对应
 在如下情况下，需要在本地方法中应用java对象的引用，就会用到类型之间的转换：
