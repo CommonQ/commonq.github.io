@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: merge_list
+title: 链表之归并有序链表
 categories: Algorithm
 ---
 
