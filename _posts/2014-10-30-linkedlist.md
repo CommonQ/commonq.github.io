@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: LinkedList
+title: 链表的基本操作
 categories: Algorithm
 ---
 
