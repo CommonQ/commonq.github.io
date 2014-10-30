@@ -2,6 +2,7 @@
 published: true
 layout: post
 title: merge_list
+categories: Algorithm
 ---
 
 ## 链表之归并有序链表
@@ -52,7 +53,3 @@ Node *merge_list(Node *ptr1,Node *ptr2){
 }
 
 ```
-
-
-
-
