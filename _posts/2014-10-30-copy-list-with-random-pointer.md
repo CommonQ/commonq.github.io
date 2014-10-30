@@ -10,7 +10,7 @@ categories: Algorithm
 此题关键在于深层拷贝，尤其要注意随机指针的拷贝问题。
 代码如下：
 
-```C++
+```C
 
 class Solution {
 public:
