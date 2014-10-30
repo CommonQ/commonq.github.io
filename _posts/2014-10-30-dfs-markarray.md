@@ -26,20 +26,13 @@ categories: Algorithm
 
 #define GET_ARRAY_LEN(array,len){len = (sizeof(array) / sizeof(array[0]));}
 int visit[10]={0};
-
 int numbers[7]={1,2,3,4,5,6,7};
 int result[7]={0};
-
 int lengths=6;
-
 int input;
-
 int is_find=0;
-
-//GET_ARRAY_LEN
-
 void dfs(int depth){
-	
+
 	int i;
 	for(i=0;i<7;i++){
 		if(visit[i]==0){
@@ -58,18 +51,12 @@ void dfs(int depth){
 						is_find=1;
 					}
 				}
-
 			}else{
 				dfs(depth+1);
 			}
 			visit[i]=0;
 		}
-
-
 	}
-
-
-
 
 }
 
