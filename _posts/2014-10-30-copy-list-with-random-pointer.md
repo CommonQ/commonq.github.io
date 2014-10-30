@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: copy list with random pointer
+title: 拷贝带随机指针的链表
 categories: Algorithm
 ---
 
