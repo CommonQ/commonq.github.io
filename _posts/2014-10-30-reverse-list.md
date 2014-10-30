@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: reverse_list
+title: 链表之逆转链表
 categories: Algorithm
 ---
 
