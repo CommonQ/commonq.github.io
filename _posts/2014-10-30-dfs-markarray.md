@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: dfs_markarray
+title: 根据深度优先算法(DFS)和标记数组求全排列
 categories: Algorithm
 ---
 
